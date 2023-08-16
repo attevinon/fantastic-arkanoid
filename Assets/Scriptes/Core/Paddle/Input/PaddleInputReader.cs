@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.InputSystem;
 
-namespace FantasticArcanoid.Paddle
+namespace FantasticArcanoid
 {
     public class PaddleInputReader : MonoBehaviour
     {

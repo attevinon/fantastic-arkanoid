@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace FantasticArcanoid.Paddle
+namespace FantasticArcanoid
 {
     public class Paddle : MonoBehaviour
     {
