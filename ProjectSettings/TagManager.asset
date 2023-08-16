@@ -44,7 +44,7 @@ TagManager:
   - name: Background
     uniqueID: 2465984199
     locked: 0
-  - name: Platform
+  - name: Paddle
     uniqueID: 2326023261
     locked: 0
   - name: Ball
