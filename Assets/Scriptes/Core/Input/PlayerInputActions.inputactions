@@ -1,18 +1,27 @@
 {
-    "name": "PaddleInputActions",
+    "name": "PlayerInputActions",
     "maps": [
         {
-            "name": "Paddle",
+            "name": "Gameplay",
             "id": "4f72ed3a-7b9c-4c61-81b7-6e6d6d360dc2",
             "actions": [
                 {
-                    "name": "MovementX",
+                    "name": "MovePaddle",
                     "type": "Value",
                     "id": "941a6a55-8a5d-4a16-a96f-a4e12f202ed7",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ActivateBall",
+                    "type": "Button",
+                    "id": "4dc82c67-4cf1-40f9-a8b2-a50c6f32ac08",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -23,7 +32,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MovementX",
+                    "action": "MovePaddle",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -34,7 +43,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MovementX",
+                    "action": "MovePaddle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -45,7 +54,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MovementX",
+                    "action": "MovePaddle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -56,7 +65,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MovementX",
+                    "action": "MovePaddle",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -67,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MovementX",
+                    "action": "MovePaddle",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -78,9 +87,31 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "MovementX",
+                    "action": "MovePaddle",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "ea7fbd91-fb9f-4132-9871-d144c0c29e0d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateBall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "874a177a-5e8e-448c-b20e-c7ee75c2b23a",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ActivateBall",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
