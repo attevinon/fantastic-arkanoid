@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7a445b37e0c258c48a6fe5d196e03740
+guid: 94af5141bf6c42a489324dfa31a19d58
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: blocks_0
+      name: blocks_broken_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 15a0b05934acea44a96fb176030d9cd4
-      internalID: 1291294748
+      spriteID: ea6d03782dc3d0a4d8e6c91bb6efb1af
+      internalID: -778776690
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blocks_1
+      name: blocks_broken_1
       rect:
         serializedVersion: 2
         x: 61
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6eaffbc9e05e35c46adfe81846e3d59a
-      internalID: 2002951567
+      spriteID: d07322d2c3f4969419a19e09656aae6b
+      internalID: -2094578602
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blocks_2
+      name: blocks_broken_2
       rect:
         serializedVersion: 2
         x: 122
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9615ae07f16230b4084443423bbb8104
-      internalID: 458809330
+      spriteID: ea15ea4688403d841976b3bcc9d3a002
+      internalID: -769606793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blocks_3
+      name: blocks_broken_3
       rect:
         serializedVersion: 2
         x: 183
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fb01f27266c71ce47967975a02999f07
-      internalID: 1334164753
+      spriteID: ecbbc80a2f5a0144ea0a969b63217d9e
+      internalID: 1780983140
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blocks_4
+      name: blocks_broken_4
       rect:
         serializedVersion: 2
         x: 244
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d245ab73b48b304f8860ff11a10d642
-      internalID: 559839757
+      spriteID: e968fa7f7580b8f48be1a618da4deb3d
+      internalID: 1511700428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blocks_5
+      name: blocks_broken_5
       rect:
         serializedVersion: 2
         x: 305
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 837a3042835500e49a3107f1e168adf7
-      internalID: 454265465
+      spriteID: 052c42168338d504f91aa9137396bcca
+      internalID: -284219108
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blocks_6
+      name: blocks_broken_6
       rect:
         serializedVersion: 2
         x: 366
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f9a247ada7ed16a4191b687e0e6c9c8e
-      internalID: 917479170
+      spriteID: 3cc4ffda1fad7c4429b318954d3b65f2
+      internalID: 2118535752
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: blocks_7
+      name: blocks_broken_7
       rect:
         serializedVersion: 2
         x: 427
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f6fa472588e8bb4cbe164bcba9ad921
-      internalID: -612863351
+      spriteID: ea3ae57392b80684bbc11cbd61f9d625
+      internalID: 325947198
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      blocks_0: 1291294748
-      blocks_1: 2002951567
-      blocks_2: 458809330
-      blocks_3: 1334164753
-      blocks_4: 559839757
-      blocks_5: 454265465
-      blocks_6: 917479170
-      blocks_7: -612863351
+      blocks_broken_0: -778776690
+      blocks_broken_1: -2094578602
+      blocks_broken_2: -769606793
+      blocks_broken_3: 1780983140
+      blocks_broken_4: 1511700428
+      blocks_broken_5: -284219108
+      blocks_broken_6: 2118535752
+      blocks_broken_7: 325947198
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
