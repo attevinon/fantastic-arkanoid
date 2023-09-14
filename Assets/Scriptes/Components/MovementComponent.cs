@@ -11,7 +11,7 @@ namespace FantasticArkanoid.Components
         [SerializeField] private Transform _rightBorder;
         [SerializeField] private SpriteRenderer _paddleSprite;
         [SerializeField] private float _offset = 0.1f;
-        private static float _movementSpeed = 5;
+        [SerializeField] private float _movementSpeed = 5;
         private float _direction;
         private Rigidbody2D _rigidbody;
 
