@@ -18,6 +18,8 @@ namespace FantasticArkanoid
 
         public void OnSceneGUI(SceneView sceneView)
         {
+            _grid.DrawGrid();
+
             Event current = Event.current;
 
             if (current.type == EventType.Layout)

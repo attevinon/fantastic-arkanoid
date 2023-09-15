@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 
 namespace FantasticArkanoid
 {
@@ -13,12 +14,15 @@ namespace FantasticArkanoid
         private const float CELL_HEIGHT = 0.5f;
         private const float CELL_WIDTH = 1f;
 
+        private float startX => LEFT_POSITION - CELL_WIDTH / 2;
+        private float startY => UP_POSITION + CELL_HEIGHT / 2;
+
         public Vector3 CheckPosition(Vector3 position)
         {
             Vector3 tempPosition = Vector3.zero;
 
-            float x = LEFT_POSITION - CELL_WIDTH / 2; //start x position = min X
-            float y = UP_POSITION + CELL_HEIGHT / 2; //start y position = max Y
+            float x = startX; //start x position = min X
+            float y = startY; //start y position = max Y
 
             //return zero vector if position is out of the grid
             if(position.x < x || position.x > (x + (CELL_WIDTH * COLUMNS_COUNT)) || 
@@ -57,6 +61,33 @@ namespace FantasticArkanoid
             }
 
             return tempPosition;
+        }
+
+        public void DrawGrid()
+        {
+            Handles.color = Color.blue;
+
+            float x = startX;
+
+            for (int i = 0; i <= COLUMNS_COUNT; i++)
+            {
+                Handles.DrawLine(
+                    new Vector2(x, startY), 
+                    new Vector2(x, startY - ROWS_COUNT * CELL_HEIGHT));
+
+                x += CELL_WIDTH;
+            }
+
+            float y = startY;
+
+            for (int i = 0; i <= ROWS_COUNT; i++)
+            {
+                Handles.DrawLine(
+                    new Vector2(startX, y), 
+                    new Vector2(startX + COLUMNS_COUNT * CELL_WIDTH, y));
+
+                y -= CELL_HEIGHT;
+            }
         }
     }
 }
