@@ -1,3 +1,4 @@
+using FantasticArkanoid.Utilites;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace FantasticArkanoid
         public List<BrickObject> GetBricks()
         {
             var bricks = new List<BrickObject>();
-            GameObject[] allBricks = GameObject.FindGameObjectsWithTag("Bricks");
+            GameObject[] allBricks = GameObject.FindGameObjectsWithTag(ConstStrings.Tags.BRICK_TAG);
 
             foreach (var item in allBricks)
             {
@@ -16,6 +17,7 @@ namespace FantasticArkanoid
                 if (item.TryGetComponent(out Brick brick))
                 {
                     brickObject.Data = brick.Data;
+                    brickObject.Position = brick.transform.position;
                 }
 
                 bricks.Add(brickObject);

@@ -24,6 +24,8 @@ namespace FantasticArkanoid
                     brickInEditor.Initialize(levelData.Bricks[i].Data as BreakableBrickData);
                 }
 
+                goEditor.transform.position = levelData.Bricks[i].Position;
+
 #else
                 GameObject go = Instantiate(levelData.Bricks[i].Data.Prefab, parent);
 
