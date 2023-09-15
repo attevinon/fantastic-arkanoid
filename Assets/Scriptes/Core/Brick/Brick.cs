@@ -9,14 +9,15 @@ namespace FantasticArkanoid
     [RequireComponent(typeof(ParticleSystem))]
     public class Brick : MonoBehaviour
     {
-        [SerializeField] private UnityEvent _onDied;
         
-        private List<Sprite> _sprites;
-        private int _lives;
-        private ParticleSystem _debrisParticles;
-        //private int _scorePoints;
+        [SerializeField] private List<Sprite> _sprites;
+        [SerializeField] private int _lives;
+        [SerializeField] private SpriteRenderer _spriteRenerer;
+        //[SerializeField] private int _scorePoints;
 
-        private SpriteRenderer _spriteRenerer;
+        [SerializeField] private UnityEvent _onDied;
+
+        private ParticleSystem _debrisParticles;
 
 #if UNITY_EDITOR
         public BrickData Data; 
