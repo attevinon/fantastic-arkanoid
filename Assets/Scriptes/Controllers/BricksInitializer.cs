@@ -1,26 +1,41 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FantasticArkanoid.Scriptable;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace FantasticArkanoid
 {
-    public class BricksInitializer : MonoBehaviour
+    public class BricksInitializer
     {
-        [SerializeField] private List<BreakableBrickData> _bricks;
-        private void Start()
+        public void InitializeBricks(LevelStaticData levelData, Transform parent)
         {
-            InitializeBricks();
-        }
-        public void InitializeBricks()
-        {
-            for (int i = 0; i < _bricks.Count; i++)
+            for (int i = 0; i < levelData.Bricks.Count; i++)
             {
-                GameObject go = Instantiate(_bricks[i].Prefab, new Vector2(0 + i, 0), Quaternion.identity);
+#if UNITY_EDITOR
+                GameObject goEditor;
+
+                goEditor = PrefabUtility.InstantiatePrefab(levelData.Bricks[i].Data.Prefab, parent) as GameObject;
+
+                if (goEditor.TryGetComponent(out Brick brickInEditor))
+                {
+                    brickInEditor.Data = levelData.Bricks[i].Data;
+                    brickInEditor.Initialize(levelData.Bricks[i].Data as BreakableBrickData);
+                }
+
+#else
+                GameObject go = Instantiate(levelData.Bricks[i].Data.Prefab, parent);
+
                 if (go.TryGetComponent(out Brick brick))
                 {
-                    brick.Initialize(_bricks[i]);
+                    BreakableBrickData breakableBrickData = levelData.Bricks[i].Data as BreakableBrickData;
+                    brick.Initialize(breakableBrickData);
                 }
+
+                go.transform.position = levelData.Bricks[i].Position;
+
+#endif
             }
         }
     }

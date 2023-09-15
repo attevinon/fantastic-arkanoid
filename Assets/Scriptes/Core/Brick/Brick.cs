@@ -18,6 +18,9 @@ namespace FantasticArkanoid
 
         private SpriteRenderer _spriteRenerer;
 
+#if UNITY_EDITOR
+        public BrickData Data; 
+#endif
         public void Initialize(BreakableBrickData data)
         {
             //_scorePoints = data.ScorePoints;
