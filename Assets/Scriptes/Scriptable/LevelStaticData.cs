@@ -9,11 +9,11 @@ namespace FantasticArkanoid
     [CreateAssetMenu(fileName = "Level", menuName = "ArkanoidData/LevelData")]
     public class LevelStaticData : ScriptableObject
     {
-        public List<BrickObject> Bricks = new List<BrickObject>();
+        public List<BrickOnLevel> Bricks = new List<BrickOnLevel>();
     }
 
     [Serializable]
-    public class BrickObject
+    public class BrickOnLevel
     {
         public Vector3 Position;
         public BrickData Data;

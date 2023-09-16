@@ -12,4 +12,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b784359e2c09fb4ab01bdbbb2b9791c, type: 3}
   m_Name: Level_1
   m_EditorClassIdentifier: 
-  Bricks: []
+  Bricks:
+  - Position: {x: 4.5, y: 2.25, z: 0}
+    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
+  - Position: {x: -3.5, y: 1.75, z: 0}
+    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
+  - Position: {x: -3.5, y: 3.25, z: 0}
+    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
+  - Position: {x: -0.5, y: 2.25, z: 0}
+    Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
+  - Position: {x: 0.5, y: 3.25, z: 0}
+    Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
+  - Position: {x: 5.5, y: 2.75, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: 6.5, y: 4.25, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: 2.5, y: 3.25, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: -5.5, y: 1.25, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: -5.5, y: 2.75, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: -6.5, y: 2.25, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: -7.5, y: 1.75, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: -7.5, y: 0.75, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}
+  - Position: {x: -7.5, y: 0.25, z: 0}
+    Data: {fileID: 11400000, guid: 403027bc0849fe049ac74c399e2479eb, type: 2}

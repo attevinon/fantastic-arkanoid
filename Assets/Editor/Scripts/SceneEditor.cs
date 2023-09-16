@@ -52,13 +52,20 @@ namespace FantasticArkanoid
 
             GameObject go = PrefabUtility.InstantiatePrefab(_levelEditor.GetSelectedBrick().Prefab, _parent) as GameObject;
             go.transform.position = brickPosition;
-             
-            if(go.TryGetComponent(out Brick brick))
-            {
-                brick.Data = _levelEditor.GetSelectedBrick();
-                brick.Initialize(_levelEditor.GetSelectedBrick() as BreakableBrickData);
-            }
 
+            if(go.TryGetComponent(out BaseBrick baseBrick))
+            {
+                baseBrick.Data = _levelEditor.GetSelectedBrick();
+
+                if (go.TryGetComponent(out Brick brick))
+                {
+                    brick.Initialize(_levelEditor.GetSelectedBrick() as BreakableBrickData);
+                }
+                else
+                {
+                    baseBrick.Initialize(_levelEditor.GetSelectedBrick());
+                }
+            }
         }
 
         private bool IsEmpty(Vector3 position)
