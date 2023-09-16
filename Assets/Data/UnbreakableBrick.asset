@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: UnbreakableBrick
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1567212785981179113, guid: e88edf7128bb1bb4984e95100f3a507f, type: 3}
+  ParticlesColor: {r: 0.6792453, g: 0.45880255, b: 0.29156286, a: 1}

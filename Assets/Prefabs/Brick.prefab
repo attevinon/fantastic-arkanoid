@@ -102,6 +102,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c479af0e4f9d144b877d14443372bbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Data: {fileID: 0}
+  _sprites: []
+  _lives: 0
+  _spriteRenerer: {fileID: 0}
   _onDied:
     m_PersistentCalls:
       m_Calls:
@@ -129,9 +133,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 4504190321583386633}
-        m_TargetAssemblyTypeName: FantasticArkanoid.Brick, Assembly-CSharp
-        m_MethodName: SpawnDebrisParticles
+      - m_Target: {fileID: 4012318129932827368}
+        m_TargetAssemblyTypeName: UnityEngine.ParticleSystem, UnityEngine
+        m_MethodName: Play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -141,7 +145,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  Data: {fileID: 0}
 --- !u!114 &3431735073437567833
 MonoBehaviour:
   m_ObjectHideFlags: 0

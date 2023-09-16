@@ -8,7 +8,6 @@ namespace FantasticArkanoid.Scriptable
     public class BreakableBrickData : BrickData
     {
         public Sprite[] Sprites;
-        public Color ParticlesColor;
         public int ScorePoints;
     }
 }

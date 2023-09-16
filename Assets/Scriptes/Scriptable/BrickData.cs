@@ -8,5 +8,6 @@ namespace FantasticArkanoid.Scriptable
     public class BrickData : ScriptableObject
     {
         public GameObject Prefab;
+        public Color ParticlesColor;
     }
 }
