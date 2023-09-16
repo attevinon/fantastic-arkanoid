@@ -6,25 +6,20 @@ namespace FantasticArkanoid
 {
     public class SaveLevel
     {
-        public List<BrickOnLevel> GetBricks()
+        public void Save(LevelStaticData level)
         {
-            var bricks = new List<BrickOnLevel>();
-            GameObject[] allBricks = GameObject.FindGameObjectsWithTag(ConstStrings.Tags.BRICK_TAG);
+            level.Bricks = new List<BrickOnLevel>();
+            BaseBrick[] allBricks = GameObject.FindObjectsOfType<BaseBrick>();
 
-            foreach (var item in allBricks)
+            foreach (var brick in allBricks)
             {
-                BrickOnLevel brickOnLevel = new BrickOnLevel();
+                BrickOnLevel brickOnLevel = new BrickOnLevel() {
+                    Data = brick.Data,
+                    Position = brick.transform.position
+                };
 
-                if(item.TryGetComponent(out BaseBrick baseBrick))
-                {
-                    brickOnLevel.Data = baseBrick.Data;
-                    brickOnLevel.Position = baseBrick.transform.position;
-                }
-
-                bricks.Add(brickOnLevel);
+                level.Bricks.Add(brickOnLevel);
             }
-
-            return bricks;
         }
     }
 }

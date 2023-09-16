@@ -132,7 +132,7 @@ namespace FantasticArkanoid
                 if (GUILayout.Button("Save Level Data"))
                 {
                     SaveLevel saveLevel = new SaveLevel();
-                    _levelData.Bricks = saveLevel.GetBricks();
+                    saveLevel.Save(_levelData);
                     EditorUtility.SetDirty(_levelData);
                     Debug.Log("level saved");
                 }
