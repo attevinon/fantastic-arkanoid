@@ -116,14 +116,8 @@ namespace FantasticArkanoid
 
                 if(GUILayout.Button("Load Level Data"))
                 {
-                    GameObject[] allBricks = GameObject.FindGameObjectsWithTag(ConstStrings.Tags.BRICK_TAG);
-                    if(allBricks.Length != 0)
-                    {
-                        foreach (var brick in allBricks)
-                        {
-                            DestroyImmediate(brick.gameObject);
-                        }
-                    }
+                    LevelCleaner levelCleaner = new LevelCleaner();
+                    levelCleaner.CleanLevel();
 
                     BricksInitializer bricksInitializer = new BricksInitializer();
                     bricksInitializer.InitializeBricks(_levelData, _parent);
