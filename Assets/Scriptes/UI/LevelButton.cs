@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,18 +8,18 @@ namespace FantasticArkanoid.UI
     {
         [SerializeField] private Text _buttonText;
         private int _levelIndex;
-        public void Initialize(int levelIndex)
+        private Action<bool> _onClicked;
+        public void Initialize(int levelIndex, LevelsMenu menu)
         {
             _levelIndex = levelIndex;
             _buttonText.text = _levelIndex.ToString();
+            _onClicked += menu.OnLevelSelected;
         }
 
         public void OnLevelButtonClicked()
         {
             LevelIndex.SelctedLevelIndex = _levelIndex;
-
-            SceneLoader loader = new SceneLoader();
-            loader.LoadScene(Scenes.Game);
+            _onClicked?.Invoke(true);
         }
     }
 }
