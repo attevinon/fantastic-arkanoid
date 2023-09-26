@@ -8,6 +8,7 @@ namespace FantasticArkanoid.UI
     public class LevelsMenu : MonoBehaviour
     {
         [SerializeField] private Text _levelHeader;
+        [SerializeField] private Button _playButton;
         [SerializeField] private CanvasGroup _levelInfoContainer;
         [SerializeField] private CanvasGroup _noLevelSelectedContainer;
 
@@ -18,11 +19,8 @@ namespace FantasticArkanoid.UI
         }
         public void OnLevelSelected(bool isOpened)
         {
-            if (isOpened)
-            {
-                EnableCanvasGroup(_noLevelSelectedContainer, false);
-                ShowSelectedLevelInfo();
-            }
+            EnableCanvasGroup(_noLevelSelectedContainer, false);
+            ShowSelectedLevelInfo(isOpened);
         }
 
         private void EnableCanvasGroup(CanvasGroup canvasGroup, bool enable)
@@ -31,11 +29,12 @@ namespace FantasticArkanoid.UI
             canvasGroup.interactable = enable;
         }
 
-        private void ShowSelectedLevelInfo()
+        private void ShowSelectedLevelInfo(bool isOpened)
         {
             EnableCanvasGroup(_levelInfoContainer, true);
 
             _levelHeader.text = $"Level {LevelIndex.SelctedLevelIndex}";
+            _playButton.interactable = isOpened;
         }
         public void OnPlayClicked()
         {

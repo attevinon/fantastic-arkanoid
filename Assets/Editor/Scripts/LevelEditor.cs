@@ -42,6 +42,13 @@ namespace FantasticArkanoid
             }
             else
             {
+
+                if(GUILayout.Button("Clear Keys"))
+                {
+                    LevelsProgressDataAccess progressesDataAccess = new LevelsProgressDataAccess();
+                    progressesDataAccess.ClearData();
+                }
+
                 //BRICKPREFAB header
                 GUILayout.BeginHorizontal();
                 GUILayout.FlexibleSpace();
@@ -116,7 +123,7 @@ namespace FantasticArkanoid
 
                 if(GUILayout.Button("Load Level Data"))
                 {
-                    LevelCleaner levelCleaner = new LevelCleaner();
+                    LevelCleaner levelCleaner = FindObjectOfType<LevelCleaner>();
                     levelCleaner.CleanLevel();
 
                     BricksInitializer bricksInitializer = new BricksInitializer();

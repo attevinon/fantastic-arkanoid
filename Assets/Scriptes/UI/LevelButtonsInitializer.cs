@@ -11,8 +11,6 @@ namespace FantasticArkanoid
         [SerializeField] private Transform _container;
         [SerializeField] private LevelsMenu _levelsMenu;
 
-        private int numOfLevels = 10; //will be replaced with LevelProgress
-
         private void Start()
         {
             InitializeButtons();
@@ -20,13 +18,16 @@ namespace FantasticArkanoid
 
         public void InitializeButtons()
         {
-            for (int i = 0; i < numOfLevels; i++)
+            LevelsProgressDataAccess levelsProgressesDataAccess = new LevelsProgressDataAccess();
+            LevelsProgress levelsProgresses = levelsProgressesDataAccess.GetLevelsProgress();
+
+            for (int i = 0; i < levelsProgresses.LevelsProgressDatas.Count; i++)
             {
                 GameObject go = Instantiate(_levelButtonPrefab.gameObject, _container);
 
                 if (go.TryGetComponent(out LevelButton button))
                 {
-                    button.Initialize(i + 1, _levelsMenu);
+                    button.Initialize(i + 1, levelsProgresses.LevelsProgressDatas[i], _levelsMenu);
                 }
             }
         }
