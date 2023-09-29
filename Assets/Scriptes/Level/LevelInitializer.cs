@@ -7,10 +7,16 @@ namespace FantasticArkanoid
         [SerializeField] private Transform _bricksParent;
         [SerializeField] private LevelCleaner _levelCleaner;
 
-        private BricksInitializer _bricksInitializer = new BricksInitializer();
+        private LevelStateMachine _stateMachine;
+
+        private BricksInitializer _bricksInitializer;
 
         private void Start()
         {
+            _stateMachine = new LevelStateMachine();
+            _stateMachine.EnterIn<LoadingLevelState>();
+
+            _bricksInitializer = new BricksInitializer();
             Initialize();
         }
         public void Initialize()
@@ -23,6 +29,8 @@ namespace FantasticArkanoid
                 return;
 
             _bricksInitializer.InitializeBricks(levelData, _bricksParent);
+
+            _stateMachine.EnterIn<GameplayLevelState>();
         }
     }
 }
