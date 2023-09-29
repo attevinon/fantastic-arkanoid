@@ -11,13 +11,13 @@ namespace FantasticArkanoid.UI
         private int _levelIndex;
         private bool _isOpened;
 
-        public void Initialize(int levelIndex, LevelProgressData levelProgress, LevelsMenu menu)
+        public void Initialize(int levelIndex, LevelProgressData levelProgress, Action<bool> onClicked)
         {
             _levelIndex = levelIndex;
             _buttonText.text = _levelIndex.ToString();
             _isOpened = levelProgress.IsOpened;
 
-            _onClicked += menu.OnLevelSelected;
+            _onClicked += onClicked;
         }
 
         public void OnLevelButtonClicked()

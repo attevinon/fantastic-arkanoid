@@ -1,7 +1,5 @@
-using FantasticArkanoid.UI;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using FantasticArkanoid.UI;
 
 namespace FantasticArkanoid
 {
@@ -27,7 +25,7 @@ namespace FantasticArkanoid
 
                 if (go.TryGetComponent(out LevelButton button))
                 {
-                    button.Initialize(i + 1, levelsProgresses.LevelsProgressDatas[i], _levelsMenu);
+                    button.Initialize(i + 1, levelsProgresses.LevelsProgressDatas[i], _levelsMenu.OnLevelSelected);
                 }
             }
         }
