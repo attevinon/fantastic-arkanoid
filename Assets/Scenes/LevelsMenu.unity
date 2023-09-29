@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 299908090}
   - component: {fileID: 299908085}
   - component: {fileID: 299908086}
+  - component: {fileID: 299908091}
   m_Layer: 5
   m_Name: SelectedLevelPannel
   m_TagString: Untagged
@@ -480,6 +481,21 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: 1
   m_LayoutPriority: 1
+--- !u!114 &299908091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299908083}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bda10db87601c243b343277bf4800af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelInfoContainer: {fileID: 299908085}
+  _levelHeader: {fileID: 210975173}
+  _playButton: {fileID: 893200122}
 --- !u!1 &487592155
 GameObject:
   m_ObjectHideFlags: 0
@@ -893,8 +909,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1453222004}
-        m_TargetAssemblyTypeName: FantasticArkanoid.UI.LevelsMenu, Assembly-CSharp
+      - m_Target: {fileID: 299908091}
+        m_TargetAssemblyTypeName: FantasticArkanoid.UI.SelectedLevelPannel, Assembly-CSharp
         m_MethodName: OnPlayClicked
         m_Mode: 1
         m_Arguments:
@@ -1279,10 +1295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d4f11d5dbfeda74bb2cda2c95cad3e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelHeader: {fileID: 210975173}
-  _playButton: {fileID: 893200122}
-  _levelInfoContainer: {fileID: 299908085}
-  _noLevelSelectedContainer: {fileID: 6226231}
+  _selectedLevelPannel: {fileID: 299908091}
+  _noLevelSelectedPannel: {fileID: 6226231}
 --- !u!114 &1453222006
 MonoBehaviour:
   m_ObjectHideFlags: 0
