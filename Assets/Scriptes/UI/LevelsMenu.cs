@@ -14,7 +14,7 @@ namespace FantasticArkanoid.UI
         }
         public void OnLevelSelected(bool isLevelOpened)
         {
-            _noLevelSelectedPannel.enabled = false;
+            _noLevelSelectedPannel.EnableCanvasGroup(false);
             _selectedLevelPannel.ShowSelectedLevelInfo(isLevelOpened);
         }
     }
