@@ -1,45 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using FantasticArkanoid.Utilites;
 
 namespace FantasticArkanoid.UI
 {
     public class LevelsMenu : MonoBehaviour
     {
-        [SerializeField] private Text _levelHeader;
-        [SerializeField] private Button _playButton;
-        [SerializeField] private CanvasGroup _levelInfoContainer;
-        [SerializeField] private CanvasGroup _noLevelSelectedContainer;
+        [SerializeField] private SelectedLevelPannel _selectedLevelPannel;
+        [SerializeField] private CanvasGroup _noLevelSelectedPannel;
 
         private void Start()
         {
-            EnableCanvasGroup(_levelInfoContainer, false);
-            EnableCanvasGroup(_noLevelSelectedContainer, true);
+            _noLevelSelectedPannel.EnableCanvasGroup(true);
         }
-        public void OnLevelSelected(bool isOpened)
+        public void OnLevelSelected(bool isLevelOpened)
         {
-            EnableCanvasGroup(_noLevelSelectedContainer, false);
-            ShowSelectedLevelInfo(isOpened);
-        }
-
-        private void EnableCanvasGroup(CanvasGroup canvasGroup, bool enable)
-        {
-            canvasGroup.alpha = enable ? 1 : 0;
-            canvasGroup.interactable = enable;
-        }
-
-        private void ShowSelectedLevelInfo(bool isOpened)
-        {
-            EnableCanvasGroup(_levelInfoContainer, true);
-
-            _levelHeader.text = $"Level {LevelIndex.SelctedLevelIndex}";
-            _playButton.interactable = isOpened;
-        }
-        public void OnPlayClicked()
-        {
-            SceneLoader loader = new SceneLoader();
-            loader.LoadScene(Scenes.Game);
+            _noLevelSelectedPannel.enabled = false;
+            _selectedLevelPannel.ShowSelectedLevelInfo(isLevelOpened);
         }
     }
 }
