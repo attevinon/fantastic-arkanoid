@@ -1,10 +1,6 @@
-using FantasticArkanoid;
-using FantasticArkanoid.Components;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using FantasticArkanoid.Components;
 
 namespace FantasticArkanoid
 {
@@ -22,17 +18,6 @@ namespace FantasticArkanoid
         {
             var direction = callback.ReadValue<float>();
             _movement.SetDirection(direction);
-
-            /*var gos = FindObjectsOfType<MovementComponent>();
-            if(gos != null)
-            {
-                var direction = callback.ReadValue<float>();
-                foreach (var go in gos)
-                {
-                    go.SetDirection(direction);
-                }
-            }*/
-
         }
 
         public void OnActivateBall(InputAction.CallbackContext callback)
