@@ -1,19 +1,20 @@
+using FantasticArkanoid.UI;
+using FantasticArkanoid.Utilites;
 using UnityEngine;
 
 namespace FantasticArkanoid
 {
     public class LoadingLevelState : BaseLevelState
     {
-        public LoadingLevelState(LevelStateMachine stateMachine) : base(stateMachine) { }
-
         public override void EnterState()
         {
+            LoadingScreen.Instance?.Enable(true);
             Debug.Log("Enter Loading");
-            //show loading pannel
         }
 
         public override void ExitState()
         {
+            LoadingScreen.Instance?.Enable(false);
             Debug.Log("Exit Loading");
         }
     }

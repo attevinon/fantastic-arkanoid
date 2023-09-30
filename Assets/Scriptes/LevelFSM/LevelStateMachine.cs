@@ -9,13 +9,13 @@ namespace FantasticArkanoid
         private Dictionary<Type, BaseLevelState> _states;
         private BaseLevelState _currentState;
 
-        public LevelStateMachine()
+        public LevelStateMachine(BaseLevelState[] states)
         {
-            _states = new Dictionary<Type, BaseLevelState>()
+            _states = new Dictionary<Type, BaseLevelState>();
+            foreach (var state in states)
             {
-                [typeof(LoadingLevelState)] = new LoadingLevelState(this),
-                [typeof(GameplayLevelState)] = new GameplayLevelState(this),
-            };
+                _states.Add(state.GetType(), state);
+            }
         }
 
         public void EnterIn<TState>() where TState : BaseLevelState
