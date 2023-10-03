@@ -1,6 +1,6 @@
-using FantasticArkanoid.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using FantasticArkanoid.UI;
 
 namespace FantasticArkanoid
 {
@@ -9,7 +9,8 @@ namespace FantasticArkanoid
         [SerializeField] private PlayerInput  _input;
         [SerializeField] private Transform _bricksParent;
         [SerializeField] private LevelCleaner _levelCleaner;
-
+        [SerializeField] private GameplayUI _gameplayUI;
+       
         private LevelStateMachine _levelStateMachine;
         private BricksInitializer _bricksInitializer;
 
@@ -18,15 +19,19 @@ namespace FantasticArkanoid
             _levelStateMachine = SetLevelStateMachine();
             _levelStateMachine.EnterIn<LoadingLevelState>();
 
+            _gameplayUI.Initialize(_levelStateMachine);
+
             _bricksInitializer = new BricksInitializer();
-            Initialize();
+
+            InitializeLevel();
         }
         private LevelStateMachine SetLevelStateMachine()
         {
             BaseLevelState[] states = new BaseLevelState[]
             {
                 new LoadingLevelState(),
-                new GameplayLevelState(_input)
+                new GameplayLevelState(_input),
+                new PauseLevelState(),
             };
 
             var levelStateMachine = new LevelStateMachine(states);
@@ -38,7 +43,7 @@ namespace FantasticArkanoid
 
             return levelStateMachine;
         }
-        public void Initialize()
+        public void InitializeLevel()
         {
             _levelCleaner.CleanLevel();
 

@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 using FantasticArkanoid.Components;
 
 namespace FantasticArkanoid
 {
-    public class InputReader : MonoBehaviour
+    public class PlayerInputReader : MonoBehaviour
     {
         [SerializeField] private GameObject _parent;
 
@@ -24,6 +25,12 @@ namespace FantasticArkanoid
         {
             if (callback.canceled)
             {
+                if (callback.control.path.Equals("/Mouse/leftButton")
+                    && EventSystem.current.IsPointerOverGameObject())
+                {
+                        return;
+                }
+
                 var ball = _parent.GetComponentInChildren<Ball>();
 
                 if(ball != null)
