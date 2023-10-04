@@ -1,14 +1,11 @@
-using FantasticArkanoid;
-using FantasticArkanoid.Components;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
+using FantasticArkanoid.Components;
 
 namespace FantasticArkanoid
 {
-    public class InputReader : MonoBehaviour
+    public class PlayerInputReader : MonoBehaviour
     {
         [SerializeField] private GameObject _parent;
 
@@ -22,23 +19,18 @@ namespace FantasticArkanoid
         {
             var direction = callback.ReadValue<float>();
             _movement.SetDirection(direction);
-
-            /*var gos = FindObjectsOfType<MovementComponent>();
-            if(gos != null)
-            {
-                var direction = callback.ReadValue<float>();
-                foreach (var go in gos)
-                {
-                    go.SetDirection(direction);
-                }
-            }*/
-
         }
 
         public void OnActivateBall(InputAction.CallbackContext callback)
         {
             if (callback.canceled)
             {
+                if (callback.control.path.Equals("/Mouse/leftButton")
+                    && EventSystem.current.IsPointerOverGameObject())
+                {
+                        return;
+                }
+
                 var ball = _parent.GetComponentInChildren<Ball>();
 
                 if(ball != null)

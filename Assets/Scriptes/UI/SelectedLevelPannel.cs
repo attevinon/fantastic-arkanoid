@@ -25,6 +25,7 @@ namespace FantasticArkanoid.UI
 
         public void OnPlayClicked()
         {
+            LoadingScreen.Instance.Enable(true);
             SceneLoader loader = new SceneLoader();
             loader.LoadScene(Scenes.Game);
         }

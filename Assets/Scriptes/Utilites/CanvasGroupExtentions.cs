@@ -8,6 +8,7 @@ namespace FantasticArkanoid.Utilites
         {
             canvasGroup.alpha = enable ? 1 : 0;
             canvasGroup.interactable = enable;
+            canvasGroup.blocksRaycasts = enable;
         }
     }
 }

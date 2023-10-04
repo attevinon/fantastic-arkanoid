@@ -1,0 +1,34 @@
+{
+    "name": "GameplayUIActions",
+    "maps": [
+        {
+            "name": "GameplayUIMap",
+            "id": "83711f42-400a-4e63-94d9-2a16ffd67b39",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "c60ae9db-c45c-458c-9c74-7f5e28f634b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1dcf4a35-fea1-47e9-87c8-7d440606e155",
+                    "path": "*/{Cancel}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
