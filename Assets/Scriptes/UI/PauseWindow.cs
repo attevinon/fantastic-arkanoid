@@ -8,13 +8,18 @@ namespace FantasticArkanoid.UI
     public class PauseWindow : MonoBehaviour
     {
         private CanvasGroup _pannel;
-        public Action OnBackToGame;
-        private bool isWindowOpened;
+        private bool isWindowOpened => _pannel.alpha != 0f;
+        private LevelStateMachine _levelStateMachine;
 
         private void Awake()
         {
             _pannel = GetComponent<CanvasGroup>();
-            isWindowOpened = false;
+            ShowWindow(false);
+        }
+
+        public void Initialize(LevelStateMachine levelStateMachine)
+        {
+            _levelStateMachine = levelStateMachine;
         }
 
         public void ShowWindow(bool value)
@@ -23,7 +28,6 @@ namespace FantasticArkanoid.UI
                 return;
 
             _pannel.EnableCanvasGroup(value);
-            isWindowOpened = value;
         }
 
         public void OnBackToGameClicked()
@@ -31,7 +35,19 @@ namespace FantasticArkanoid.UI
             if (!isWindowOpened)
                 return;
 
-            OnBackToGame?.Invoke();
+            ShowWindow(false);
+            _levelStateMachine.EnterIn<GameplayLevelState>();
+        }
+
+        public void OnBackToLevelsMenuClicked()
+        {
+            ShowWindow(false);
+            _levelStateMachine.EnterIn<LoadingLevelState>();
+
+            //show warning
+
+            SceneLoader sceneLoader = new SceneLoader();
+            sceneLoader.LoadScene(Scenes.LevelsMenu);
         }
     }
 }

@@ -10,18 +10,12 @@ namespace FantasticArkanoid.UI
         public void Initialize(LevelStateMachine levelStateMachine)
         {
             _levelStateMachine = levelStateMachine;
-            _pauseWindow.OnBackToGame += BackToGame;
+            _pauseWindow.Initialize(levelStateMachine);
         }
         public void PauseGame()
         {
             _levelStateMachine.EnterIn<PauseLevelState>();
             _pauseWindow.ShowWindow(true);
-        }
-
-        public void BackToGame()
-        {
-            _pauseWindow.ShowWindow(false);
-            _levelStateMachine.EnterIn<GameplayLevelState>();
         }
     }
 }
