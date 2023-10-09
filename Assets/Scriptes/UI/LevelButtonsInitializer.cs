@@ -28,15 +28,6 @@ namespace FantasticArkanoid
                     button.Initialize(i + 1, levelsProgresses.LevelsProgressDatas[i], _levelsMenu.OnLevelSelected);
                 }
             }
-
-            if(LoadingScreen.Instance != null)
-            {
-                LoadingScreen.Instance?.Enable(false);
-            }
-            else
-            {
-                Debug.LogWarning("LoadingScreen.Instance == null");
-            }
         }
     }
 }

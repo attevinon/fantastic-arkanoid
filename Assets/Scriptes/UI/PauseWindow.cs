@@ -1,6 +1,5 @@
 using UnityEngine;
 using FantasticArkanoid.Utilites;
-using System;
 
 namespace FantasticArkanoid.UI
 {
@@ -41,13 +40,12 @@ namespace FantasticArkanoid.UI
 
         public void OnBackToLevelsMenuClicked()
         {
-            ShowWindow(false);
-            _levelStateMachine.EnterIn<LoadingLevelState>();
-
             //show warning
 
-            SceneLoader sceneLoader = new SceneLoader();
-            sceneLoader.LoadScene(Scenes.LevelsMenu);
+            SceneLoader.Instance.LoadSceneWithLoading(Scenes.LevelsMenu);
+
+            ShowWindow(false);
+            _levelStateMachine.EnterIn<LoadingLevelState>();
         }
     }
 }

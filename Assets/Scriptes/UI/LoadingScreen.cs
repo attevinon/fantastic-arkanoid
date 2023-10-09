@@ -1,16 +1,23 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FantasticArkanoid.UI
 {
     [RequireComponent(typeof(Canvas))]
     public class LoadingScreen : MonoBehaviour
     {
-        [SerializeField] private CanvasGroup _pannel;
-        [SerializeField, Range(0, 1)] private float _smoothing = 0.02f;
+        [SerializeField] private Image _image;
+        [SerializeField, Min(0)] private float _timeToFade = 0.5f;
+        [SerializeField, Min(0)] private float _timeToStayEnabled = 1f;
+
         public static LoadingScreen Instance { get; private set; }
+        public Action OnShown { private get; set; }
 
         private Canvas _canvas;
+        private float _timePassedWhileEnabled;
+        private bool _targetEnable;
 
         private void Awake()
         {
@@ -24,29 +31,74 @@ namespace FantasticArkanoid.UI
                 Destroy(gameObject);
             }
 
+            enabled = false;
             _canvas = GetComponent<Canvas>();
             _canvas.enabled = false;
+            _image.color = GetColorForAlpha(_image.color, 0f);
+            _image.raycastTarget = false;
         }
+
+        private void Update()
+        {
+            _timePassedWhileEnabled += Time.deltaTime;
+        }
+
         public void Enable(bool enable)
         {
-            if (_canvas.enabled == enable)
+            if (_targetEnable == enable)
                 return;
 
-            SmoothTransition(enable ? 1f : 0f);
-            _canvas.enabled = enable;
+            _targetEnable = enable;
+
+            if (enable)
+            {
+                _timePassedWhileEnabled = 0f;
+                _canvas.enabled = true;
+                _image.raycastTarget = true;
+            }
+
+            enabled = true;
+            StartCoroutine(StartTransition(enable));
         }
 
-        private void SmoothTransition(float targetAlpha)
+        private IEnumerator StartTransition(bool enable)
         {
-            while (_pannel.alpha != targetAlpha && !(_pannel.alpha < 0))
+            if(!enable && _timePassedWhileEnabled < _timeToStayEnabled)
             {
-                _pannel.alpha = Mathf.Lerp(_pannel.alpha, targetAlpha, _smoothing);
-
-                if(Mathf.Abs(_pannel.alpha - targetAlpha) <= 0.01f)
-                {
-                    _pannel.alpha = targetAlpha;
-                }
+                yield return new WaitForSeconds(_timeToStayEnabled - _timePassedWhileEnabled);
             }
+
+            yield return SmoothTransition(enable ? 1f : 0f);
+
+            enabled = enable;
+            _image.raycastTarget = enable;
+            OnShown?.Invoke();
+            OnShown = null;
+        }
+
+        private IEnumerator SmoothTransition(float targetAlpha)
+        {
+            float timeHasPassed = 0f;
+            var startAlpha = _image.color.a;
+
+            while (timeHasPassed < _timeToFade)
+            {
+                timeHasPassed += Time.deltaTime;
+
+                float progress = timeHasPassed / _timeToFade;
+
+                float tmpAlpha = Mathf.Lerp(startAlpha, targetAlpha, progress);
+                _image.color = GetColorForAlpha(_image.color, tmpAlpha);
+
+                yield return null;
+            }
+        }
+
+        private Color GetColorForAlpha(Color color, float targetAlpha)
+        {
+            Color newColor = color;
+            newColor.a = targetAlpha;
+            return newColor;
         }
     }
 }
