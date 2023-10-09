@@ -14,8 +14,7 @@ namespace FantasticArkanoid.UI
 
             //loading screen
 
-            SceneLoader sceneLoader = new SceneLoader();
-            sceneLoader.LoadScene(Scenes.LevelsMenu);
+            SceneLoader.Instance.LoadScene(Scenes.LevelsMenu);
         }
 
         public void OnSettingsClicked()

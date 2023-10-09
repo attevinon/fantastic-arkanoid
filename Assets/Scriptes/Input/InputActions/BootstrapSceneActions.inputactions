@@ -1,0 +1,45 @@
+{
+    "name": "UniversalActions",
+    "maps": [
+        {
+            "name": "Bootstraper",
+            "id": "cd7e6692-ff31-4e48-9ebe-4f816186bfc5",
+            "actions": [
+                {
+                    "name": "StartGame",
+                    "type": "Button",
+                    "id": "5ee569cc-6b6b-4315-acf3-f84b15ade192",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0d246d3d-81cd-4b1d-9a39-f41f3da12b26",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "62c1c42c-74ec-4431-8d3b-d48fb0bec9f0",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
