@@ -45,7 +45,6 @@ namespace FantasticArkanoid.UI
             SceneLoader.Instance.LoadSceneWithLoading(Scenes.LevelsMenu);
 
             ShowWindow(false);
-            _levelStateMachine.EnterIn<LoadingLevelState>();
         }
     }
 }

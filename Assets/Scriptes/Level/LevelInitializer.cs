@@ -17,7 +17,7 @@ namespace FantasticArkanoid
         private void Start()
         {
             _levelStateMachine = SetLevelStateMachine();
-            _levelStateMachine.EnterIn<LoadingLevelState>();
+            _levelStateMachine.EnterIn<PauseLevelState>();
 
             _gameplayUI.Initialize(_levelStateMachine);
 
@@ -29,9 +29,8 @@ namespace FantasticArkanoid
         {
             BaseLevelState[] states = new BaseLevelState[]
             {
-                new LoadingLevelState(),
-                new GameplayLevelState(_input),
                 new PauseLevelState(),
+                new GameplayLevelState(_input),
             };
 
             var levelStateMachine = new LevelStateMachine(states);
