@@ -40,7 +40,7 @@ namespace FantasticArkanoid.UI
 
         private void Update()
         {
-            _timePassedWhileEnabled += Time.deltaTime;
+            _timePassedWhileEnabled += Time.unscaledDeltaTime;
         }
 
         public void Enable(bool enable)
@@ -65,7 +65,7 @@ namespace FantasticArkanoid.UI
         {
             if(!enable && _timePassedWhileEnabled < _timeToStayEnabled)
             {
-                yield return new WaitForSeconds(_timeToStayEnabled - _timePassedWhileEnabled);
+                yield return new WaitForSecondsRealtime(_timeToStayEnabled - _timePassedWhileEnabled);
             }
 
             yield return SmoothTransition(enable ? 1f : 0f);
@@ -83,7 +83,7 @@ namespace FantasticArkanoid.UI
 
             while (timeHasPassed < _timeToFade)
             {
-                timeHasPassed += Time.deltaTime;
+                timeHasPassed += Time.unscaledDeltaTime;
 
                 float progress = timeHasPassed / _timeToFade;
 
