@@ -38,6 +38,11 @@ namespace FantasticArkanoid.UI
             _levelStateMachine.EnterIn<GameplayLevelState>();
         }
 
+        public void OnRestartLevelClicked()
+        {
+            SceneLoader.Instance.RestartScene();
+        }
+
         public void OnBackToLevelsMenuClicked()
         {
             //show warning

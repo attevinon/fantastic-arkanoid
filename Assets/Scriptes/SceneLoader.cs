@@ -28,6 +28,11 @@ namespace FantasticArkanoid
 
         private SceneLoader() { }
 
+        public void RestartScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
         public void LoadScene(Scenes sceneName)
         {
             SceneManager.LoadScene(sceneName.ToString());
