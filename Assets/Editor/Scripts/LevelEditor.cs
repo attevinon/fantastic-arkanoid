@@ -127,7 +127,7 @@ namespace FantasticArkanoid
                     levelCleaner.CleanLevel();
 
                     BricksInitializer bricksInitializer = new BricksInitializer();
-                    bricksInitializer.InitializeBricks(_levelData, _parent);
+                    bricksInitializer.InitializeBricks(_levelData, _parent, FindObjectOfType<ScoreComponent>());
                 }
 
                 if (GUILayout.Button("Save Level Data"))

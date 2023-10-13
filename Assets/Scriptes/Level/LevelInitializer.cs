@@ -6,9 +6,10 @@ namespace FantasticArkanoid
 {
     public class LevelInitializer : MonoBehaviour
     {
+        [SerializeField] private LevelCleaner _levelCleaner;
         [SerializeField] private PlayerInput  _input;
         [SerializeField] private Transform _bricksParent;
-        [SerializeField] private LevelCleaner _levelCleaner;
+        [SerializeField] private ScoreComponent _scoreComponent;
         [SerializeField] private GameplayUI _gameplayUI;
        
         private LevelStateMachine _levelStateMachine;
@@ -57,7 +58,7 @@ namespace FantasticArkanoid
 #endif
             }
 
-            _bricksInitializer.InitializeBricks(levelData, _bricksParent);
+            _bricksInitializer.InitializeBricks(levelData, _bricksParent, _scoreComponent);
 
             _levelStateMachine.EnterIn<GameplayLevelState>();
         }

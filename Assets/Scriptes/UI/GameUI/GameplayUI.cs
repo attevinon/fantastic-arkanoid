@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace FantasticArkanoid.UI
 {
     public class GameplayUI : MonoBehaviour
     {
+        [SerializeField] private Text _scorePointsText;
         [SerializeField] private PauseWindow _pauseWindow;
         private LevelStateMachine _levelStateMachine;
 
@@ -16,6 +18,11 @@ namespace FantasticArkanoid.UI
         {
             _levelStateMachine.EnterIn<PauseLevelState>();
             _pauseWindow.ShowWindow(true);
+        }
+
+        public void UpdateScore(int score)
+        {
+            _scorePointsText.text = score.ToString();
         }
     }
 }

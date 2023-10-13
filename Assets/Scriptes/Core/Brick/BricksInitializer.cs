@@ -9,7 +9,7 @@ namespace FantasticArkanoid
 {
     public class BricksInitializer
     {
-        public void InitializeBricks(LevelStaticData levelData, Transform parent)
+        public void InitializeBricks(LevelStaticData levelData, Transform parent, ScoreComponent scoreComponent)
         {
             for (int i = 0; i < levelData.Bricks.Count; i++)
             {
@@ -27,7 +27,7 @@ namespace FantasticArkanoid
 #endif
                 if (go.TryGetComponent(out Brick brick))
                 {
-                    brick.Initialize(levelData.Bricks[i].Data as BreakableBrickData);
+                    brick.Initialize(levelData.Bricks[i].Data as BreakableBrickData, scoreComponent.UpdateScore);
                 }
                 else
                 {
