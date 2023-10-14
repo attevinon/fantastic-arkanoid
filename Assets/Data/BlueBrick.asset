@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8736c9207608ca4e8d96e28025833df, type: 3}
   m_Name: BlueBrick
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 0}
-  ParticlesColor: {r: 0, g: 0, b: 0, a: 0}
-  Sprites: []
-  ScorePoints: 0
+  Prefab: {fileID: 7327951949114229832, guid: 26b07ce06582b2d41a01ec61c80938d6, type: 3}
+  ParticlesColor: {r: 0.2663678, g: 0.10840159, b: 0.7924528, a: 0}
+  Sprites:
+  - {fileID: 2118535752, guid: 94af5141bf6c42a489324dfa31a19d58, type: 3}
+  - {fileID: 917479170, guid: 7a445b37e0c258c48a6fe5d196e03740, type: 3}
+  - {fileID: 1765859416, guid: 94ce2ed0b89cd254e86756c6d4963a91, type: 3}
+  ScorePoints: 525

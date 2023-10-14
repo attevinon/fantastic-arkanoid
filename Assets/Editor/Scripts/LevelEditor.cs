@@ -1,7 +1,6 @@
 using UnityEditor;
 using UnityEngine;
 using FantasticArkanoid.Scriptable;
-using FantasticArkanoid.Utilites;
 
 namespace FantasticArkanoid
 {
@@ -10,9 +9,10 @@ namespace FantasticArkanoid
         private Transform _parent;
         private EditorData _data;
         private int _selectedBrickIndex = 0;
-        private bool _isEditionEnabled;
         private LevelStaticData _levelData;
         private SceneEditor _sceneEditor;
+        private bool _isEditionEnabled;
+        private bool _isEditionEnabledOnce;
 
         [MenuItem("Window/Level Editor")]
         public static void Initialize()
@@ -22,6 +22,7 @@ namespace FantasticArkanoid
         }
         public BrickData GetSelectedBrick()
         {
+            Debug.Log($"data: {_data.BrickData[_selectedBrickIndex].BrickData == null}");
             return _data.BrickData[_selectedBrickIndex].BrickData;
         }
         private void OnGUI()
@@ -37,16 +38,25 @@ namespace FantasticArkanoid
                 {
                     _data = (EditorData)AssetDatabase.LoadAssetAtPath("Assets/Editor/Data/EditorData.asset", typeof(EditorData));
                     _sceneEditor = CreateInstance<SceneEditor>();
-                    _sceneEditor.Initialize(this, _parent);
+                    _sceneEditor.Initialize(_parent, GetSelectedBrick);
                 }
             }
             else
             {
-
-                if(GUILayout.Button("Clear Keys"))
+                if (GUILayout.Button("Clear Keys"))
                 {
                     LevelsProgressDataAccess progressesDataAccess = new LevelsProgressDataAccess();
                     progressesDataAccess.ClearData();
+                }
+
+                GUILayout.Space(5);
+
+                if (GUILayout.Button("Clear Data"))
+                {
+                    SceneView.duringSceneGui -= _sceneEditor.OnSceneGUI;
+                    _isEditionEnabledOnce = false;
+                    _sceneEditor = null;
+                    _data = null;
                 }
 
                 //BRICKPREFAB header
@@ -97,31 +107,51 @@ namespace FantasticArkanoid
                 GUILayout.EndHorizontal();
 
                 //enable and disable edition
-                GUI.color = _isEditionEnabled ? Color.green : Color.white;
-                if(GUILayout.Button("Add Bricks"))
-                {
-                    _isEditionEnabled = !_isEditionEnabled;
+                GUILayout.BeginHorizontal();
+                GUILayout.FlexibleSpace();
+                _isEditionEnabled = GUILayout.Toggle(_isEditionEnabled, "Edition Mode");
+                GUILayout.FlexibleSpace();
+                GUILayout.EndHorizontal();
 
-                    if (_isEditionEnabled)
+                if (_isEditionEnabled)
+                {
+                    if (!_isEditionEnabledOnce)
                     {
                         SceneView.duringSceneGui += _sceneEditor.OnSceneGUI;
+                        _isEditionEnabledOnce = true;
                     }
-                    else
+
+                    GUILayout.Label("Adding a brick: LMB.");
+                    GUILayout.Label("Deleting the brick: alt + LMB");
+
+                    GUILayout.BeginHorizontal();
+                    GUILayout.FlexibleSpace();
+                    GUI.color = Color.red;
+                    if (GUILayout.Button("Clear Level"))
                     {
-                        SceneView.duringSceneGui -= _sceneEditor.OnSceneGUI;
+                        LevelCleaner levelCleaner = FindObjectOfType<LevelCleaner>();
+                        levelCleaner.CleanLevel();
                     }
+                    GUI.color = Color.white;
+                    GUILayout.FlexibleSpace();
+                    GUILayout.EndHorizontal();
                 }
+                else
+                {
+                    SceneView.duringSceneGui -= _sceneEditor.OnSceneGUI;
+                    _isEditionEnabledOnce = false;
+                }
+
                 GUI.color = Color.white;
                 GUILayout.Space(30);
 
                 //level
                 _levelData = EditorGUILayout.ObjectField(_levelData, typeof(LevelStaticData), false) as LevelStaticData;
                 GUILayout.Space(10);
-
                 //level edition
                 GUILayout.BeginHorizontal();
 
-                if(GUILayout.Button("Load Level Data"))
+                if (GUILayout.Button("Load Level Data"))
                 {
                     LevelCleaner levelCleaner = FindObjectOfType<LevelCleaner>();
                     levelCleaner.CleanLevel();
@@ -139,6 +169,7 @@ namespace FantasticArkanoid
                 }
 
                 GUILayout.EndHorizontal();
+                GUILayout.Space(10);
             }
         }
     }
