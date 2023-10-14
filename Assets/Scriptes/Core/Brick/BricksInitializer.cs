@@ -9,7 +9,7 @@ namespace FantasticArkanoid
 {
     public class BricksInitializer
     {
-        public void InitializeBricks(LevelStaticData levelData, Transform parent, ScoreComponent scoreComponent)
+        public void InitializeBricks(LevelStaticData levelData, Transform parent, ScoreCounter scoreComponent)
         {
             for (int i = 0; i < levelData.Bricks.Count; i++)
             {

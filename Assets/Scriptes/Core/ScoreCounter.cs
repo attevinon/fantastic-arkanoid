@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 namespace FantasticArkanoid
 {
-    public class ScoreComponent : MonoBehaviour
+    public class ScoreCounter : MonoBehaviour
     {
         [SerializeField] private UnityEvent<int> _onScoreUpdated;
         private int _score;

@@ -9,7 +9,7 @@ namespace FantasticArkanoid
         [SerializeField] private LevelCleaner _levelCleaner;
         [SerializeField] private PlayerInput  _input;
         [SerializeField] private Transform _bricksParent;
-        [SerializeField] private ScoreComponent _scoreComponent;
+        [SerializeField] private ScoreCounter _scoreComponent;
         [SerializeField] private GameplayUI _gameplayUI;
        
         private LevelStateMachine _levelStateMachine;
