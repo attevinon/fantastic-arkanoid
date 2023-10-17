@@ -23,7 +23,6 @@ namespace FantasticArkanoid
         }
         public BrickData GetSelectedBrick()
         {
-            Debug.Log($"data: {_data.BrickData[_selectedBrickIndex].BrickData == null}");
             return _data.BrickData[_selectedBrickIndex].BrickData;
         }
         private void OnGUI()
