@@ -1,5 +1,6 @@
 using UnityEngine;
 using FantasticArkanoid.Utilites;
+using FantasticArkanoid.Level.ModelAbstractions;
 
 namespace FantasticArkanoid.UI
 {
@@ -12,10 +13,10 @@ namespace FantasticArkanoid.UI
         {
             _noLevelSelectedPannel.EnableCanvasGroup(true);
         }
-        public void OnLevelSelected(bool isLevelOpened)
+        public void OnLevelSelected(IReadonlyLevelProgress levelProgress)
         {
             _noLevelSelectedPannel.EnableCanvasGroup(false);
-            _selectedLevelPannel.ShowSelectedLevelInfo(isLevelOpened);
+            _selectedLevelPannel.ShowSelectedLevelInfo(levelProgress);
         }
     }
 }
