@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using FantasticArkanoid.Scriptable;
+using FantasticArkanoid.Level;
 
 namespace FantasticArkanoid
 {
@@ -157,7 +158,7 @@ namespace FantasticArkanoid
                     levelCleaner.CleanLevel();
 
                     BricksInitializer bricksInitializer = new BricksInitializer();
-                    bricksInitializer.InitializeBricks(_levelData, _parent, FindObjectOfType<ScoreCounter>());
+                    bricksInitializer.InitializeBricks(_levelData, _parent, FindObjectOfType<ScoreCounter>().UpdateScore);
                 }
 
                 if (GUILayout.Button("Save Level Data"))

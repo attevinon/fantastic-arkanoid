@@ -1,8 +1,11 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FantasticArkanoid.UI;
+using FantasticArkanoid.Level.Model;
+using FantasticArkanoid.Level.ModelAbstractions;
 
-namespace FantasticArkanoid
+namespace FantasticArkanoid.Level
 {
     public class LevelInitializer : MonoBehaviour
     {
@@ -10,7 +13,9 @@ namespace FantasticArkanoid
         [SerializeField] private PlayerInput  _input;
         [SerializeField] private Transform _bricksParent;
         [SerializeField] private ScoreCounter _scoreComponent;
-        [SerializeField] private GameplayUI _gameplayUI;
+        [SerializeField] private CommonGameUI _commonGameUI;
+        
+        private event Action<IReadonlyGameResult, IReadonlyBestResults> _onVictory;
        
         private LevelStateMachine _levelStateMachine;
         private BricksInitializer _bricksInitializer;
@@ -20,11 +25,26 @@ namespace FantasticArkanoid
             _levelStateMachine = SetLevelStateMachine();
             _levelStateMachine.EnterIn<PauseLevelState>();
 
-            _gameplayUI.Initialize(_levelStateMachine);
-
-            _bricksInitializer = new BricksInitializer();
+#if UNITY_EDITOR
+            if(LevelIndex.SelctedLevelIndex == 0)
+            {
+                LevelIndex.SelctedLevelIndex = 1;
+            }
+#endif
+            IReadonlyBestResults bestResults = GetBestResults();
+            GameSession gameSession = new GameSession();
+            
+            _scoreComponent.Initialize(_levelStateMachine, gameSession);
+            _commonGameUI.Initialize(_levelStateMachine, gameSession.Data, bestResults);
+            _onVictory += _commonGameUI.ShowWinResult;
+            _ = new GameResultHandler(_levelStateMachine, gameSession.Data, bestResults, _onVictory);
 
             InitializeLevel();
+        }
+
+        private void OnDisable()
+        {
+            _onVictory -= _commonGameUI.ShowWinResult;
         }
         private LevelStateMachine SetLevelStateMachine()
         {
@@ -43,22 +63,22 @@ namespace FantasticArkanoid
 
             return levelStateMachine;
         }
+
+        private IReadonlyBestResults GetBestResults()
+        {
+            LevelsProgressDataAccess levelsProgressDataAccess = new LevelsProgressDataAccess();
+            IReadonlyLevelProgress levelProgress = levelsProgressDataAccess.GetLevelProgressData(LevelIndex.SelctedLevelIndex);
+            return levelProgress.BestResults;
+        }
+
         public void InitializeLevel()
         {
             _levelCleaner.CleanLevel();
 
             LevelStaticData levelData = Resources.Load<LevelStaticData>("Levels/Level_" + LevelIndex.SelctedLevelIndex);
 
-            if (levelData == null)
-            {
-#if UNITY_EDITOR
-                levelData = Resources.Load<LevelStaticData>("Levels/Level_" + 1);
-#else
-                return;
-#endif
-            }
-
-            _bricksInitializer.InitializeBricks(levelData, _bricksParent, _scoreComponent);
+            _bricksInitializer = new BricksInitializer();
+            _bricksInitializer.InitializeBricks(levelData, _bricksParent, _scoreComponent.UpdateScore);
 
             _levelStateMachine.EnterIn<GameplayLevelState>();
         }

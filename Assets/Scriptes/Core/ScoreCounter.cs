@@ -1,17 +1,18 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using FantasticArkanoid.Level.Model;
 
 namespace FantasticArkanoid
 {
     public class ScoreCounter : MonoBehaviour
     {
         [SerializeField] private UnityEvent<int> _onScoreUpdated;
-        private int _score;
 
         public Action<int> UpdateScore;
+
+        private LevelStateMachine _levelStateMachine;
+        private GameSession _gameSession;
 
         private void OnEnable()
         {
@@ -21,11 +22,20 @@ namespace FantasticArkanoid
         {
             UpdateScore -= RefillScore;
         }
-        public void RefillScore(int points)
+
+        public void Initialize(LevelStateMachine levelStateMachine, GameSession gameSession)
         {
-            //check gamestate?
-            _score += points;
-            _onScoreUpdated?.Invoke(_score);
+            _levelStateMachine = levelStateMachine;
+            _gameSession = gameSession;
+        }
+
+        private void RefillScore(int points)
+        {
+            if (_levelStateMachine.IsCurrentState<GameplayLevelState>())
+            {
+                _gameSession.Data.Score += points;
+                _onScoreUpdated?.Invoke(_gameSession.Data.Score);
+            }
         }
     }
 }

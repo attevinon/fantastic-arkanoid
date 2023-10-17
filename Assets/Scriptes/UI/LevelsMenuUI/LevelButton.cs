@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using FantasticArkanoid.Level.ModelAbstractions;
 
 namespace FantasticArkanoid.UI
 {
@@ -11,7 +12,7 @@ namespace FantasticArkanoid.UI
         private int _levelIndex;
         private bool _isOpened;
 
-        public void Initialize(int levelIndex, LevelProgressData levelProgress, Action<bool> onClicked)
+        public void Initialize(int levelIndex, IReadonlyLevelProgress levelProgress, Action<bool> onClicked)
         {
             _levelIndex = levelIndex;
             _buttonText.text = _levelIndex.ToString();

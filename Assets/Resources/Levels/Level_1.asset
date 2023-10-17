@@ -13,47 +13,15 @@ MonoBehaviour:
   m_Name: Level_1
   m_EditorClassIdentifier: 
   Bricks:
-  - Position: {x: -1.5, y: 2.75, z: 0}
+  - Position: {x: 0.5, y: 3.25, z: 0}
     Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
-  - Position: {x: -2.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
+  - Position: {x: -0.5, y: 3.25, z: 0}
+    Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
   - Position: {x: 0.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
+    Data: {fileID: 11400000, guid: 6346b957fc9c73a4c962cd74408c3e9f, type: 2}
   - Position: {x: -0.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 2.5, y: 3.25, z: 0}
     Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
-  - Position: {x: 1.5, y: 3.25, z: 0}
-    Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
-  - Position: {x: 2.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
-  - Position: {x: 1.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
-  - Position: {x: 3.5, y: 3.25, z: 0}
-    Data: {fileID: 11400000, guid: 6346b957fc9c73a4c962cd74408c3e9f, type: 2}
-  - Position: {x: 4.5, y: 3.25, z: 0}
-    Data: {fileID: 11400000, guid: 6346b957fc9c73a4c962cd74408c3e9f, type: 2}
-  - Position: {x: 4.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 6346b957fc9c73a4c962cd74408c3e9f, type: 2}
-  - Position: {x: 3.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 6346b957fc9c73a4c962cd74408c3e9f, type: 2}
-  - Position: {x: -4.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
-  - Position: {x: -3.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
-  - Position: {x: -2.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
-  - Position: {x: -1.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}
-  - Position: {x: -0.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
   - Position: {x: 0.5, y: 2.25, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 1.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
-  - Position: {x: 2.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 300ae80645a0e9b4b90a415c4c8edebc, type: 2}
-  - Position: {x: 4.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 6346b957fc9c73a4c962cd74408c3e9f, type: 2}
-  - Position: {x: 3.5, y: 2.25, z: 0}
-    Data: {fileID: 11400000, guid: 6346b957fc9c73a4c962cd74408c3e9f, type: 2}
+  - Position: {x: -0.5, y: 2.25, z: 0}
+    Data: {fileID: 11400000, guid: 2fe7a14dff887d947aea3cf8201ae077, type: 2}

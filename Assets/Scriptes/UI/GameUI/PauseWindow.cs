@@ -1,34 +1,41 @@
 using UnityEngine;
-using FantasticArkanoid.Utilites;
+using UnityEngine.UI;
+using FantasticArkanoid.Level.ModelAbstractions;
 
 namespace FantasticArkanoid.UI
 {
-    [RequireComponent(typeof(CanvasGroup))]
-    public class PauseWindow : MonoBehaviour
+    public class PauseWindow : BaseWindow
     {
-        private CanvasGroup _pannel;
-        private bool isWindowOpened => _pannel.alpha != 0f;
-        private LevelStateMachine _levelStateMachine;
+        [SerializeField] private Text _scorePoitsText;
+        [SerializeField] private Text _bestScorePoitsText;
 
-        private void Awake()
+        private IReadonlyGameSessionData _gameSessionData;
+        public void Initialize(LevelStateMachine levelStateMachine,
+            IReadonlyGameSessionData gameSessionData, IReadonlyBestResults bestResults)
         {
-            _pannel = GetComponent<CanvasGroup>();
-            ShowWindow(false);
+            _gameSessionData = gameSessionData;
+            base.Initialize(levelStateMachine);
+
+            if(bestResults != null)
+            {
+                _bestScorePoitsText.text = bestResults.BestScore.ToString();
+            }
+            else
+            {
+                _bestScorePoitsText.text = "-";
+            }
+
         }
 
-        public void Initialize(LevelStateMachine levelStateMachine)
+        public override void ShowWindow(bool value)
         {
-            _levelStateMachine = levelStateMachine;
+            if (value)
+            {
+                _scorePoitsText.text = _gameSessionData.Score.ToString();
+            }
+
+            base.ShowWindow(value);
         }
-
-        public void ShowWindow(bool value)
-        {
-            if (isWindowOpened == value)
-                return;
-
-            _pannel.EnableCanvasGroup(value);
-        }
-
         public void OnBackToGameClicked()
         {
             if (!isWindowOpened)
@@ -36,20 +43,6 @@ namespace FantasticArkanoid.UI
 
             ShowWindow(false);
             _levelStateMachine.EnterIn<GameplayLevelState>();
-        }
-
-        public void OnRestartLevelClicked()
-        {
-            SceneLoader.Instance.RestartScene();
-        }
-
-        public void OnBackToLevelsMenuClicked()
-        {
-            //show warning
-
-            SceneLoader.Instance.LoadSceneWithLoading(Scenes.LevelsMenu);
-
-            ShowWindow(false);
         }
     }
 }

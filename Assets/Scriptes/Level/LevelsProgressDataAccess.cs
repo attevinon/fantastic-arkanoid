@@ -1,9 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
+using Newtonsoft.Json;
+using FantasticArkanoid.Level.ModelAbstractions;
+using FantasticArkanoid.Level.Model;
 
-namespace FantasticArkanoid
+namespace FantasticArkanoid.Level
 {
     public class LevelsProgressDataAccess
     {
@@ -20,40 +20,27 @@ namespace FantasticArkanoid
 
             for (int i = 0; i < levelsCount; i++)
             {
-                _levelsProgress.LevelsProgressDatas.Add(new LevelProgressData());
+                _levelsProgress.DatasList.Add(new LevelProgressData());
             }
 
-            _levelsProgress.LevelsProgressDatas[0].IsOpened = true;
+            _levelsProgress.DatasList[0].IsOpened = true;
             SaveAllProgressData();
             Resources.UnloadUnusedAssets();
         }
 
         private void SaveAllProgressData()
         {
-            string saveJson = JsonUtility.ToJson(_levelsProgress);
+            string saveJson = JsonConvert.SerializeObject(_levelsProgress);
             PlayerPrefs.SetString(SAVE_KEY, saveJson);
             PlayerPrefs.Save();
         }
-        public void SaveLevelProgressData(int levelIndex, LevelProgressData newProgress)
-        {
-            _levelsProgress = GetLevelsProgress();
 
-            _levelsProgress.LevelsProgressDatas[levelIndex - 1] = newProgress;
-
-            if(levelIndex - 1 != _levelsProgress.LevelsProgressDatas.Count)
-            {
-                _levelsProgress.LevelsProgressDatas[levelIndex].IsOpened = true;
-            }
-
-            SaveAllProgressData();
-        }
-
-        public LevelsProgress GetLevelsProgress()
+        private LevelsProgress GetLevelsProgress()
         {
             if (PlayerPrefs.HasKey(SAVE_KEY))
             {
                 var saveJson = PlayerPrefs.GetString(SAVE_KEY);
-                _levelsProgress = JsonUtility.FromJson<LevelsProgress>(saveJson);
+                _levelsProgress = JsonConvert.DeserializeObject<LevelsProgress>(saveJson);
             }
             else
             {
@@ -61,6 +48,38 @@ namespace FantasticArkanoid
             }
 
             return _levelsProgress;
+        }
+
+        public void SaveLevelProgressData(int levelIndex, LevelProgressData newProgress)
+        {
+            _levelsProgress = GetLevelsProgress();
+
+            _levelsProgress.DatasList[levelIndex - 1] = newProgress;
+
+            if(levelIndex - 1 < _levelsProgress.DatasList.Count)
+            {
+                _levelsProgress.DatasList[levelIndex].IsOpened = true;
+            }
+
+            SaveAllProgressData();
+        }
+
+        public IReadonlyLevelsProgress GetReadonlyLevelsProgress()
+        {
+            return  GetLevelsProgress();
+        }
+
+        public IReadonlyLevelProgress GetLevelProgressData(int index)
+        {
+            _levelsProgress = GetLevelsProgress();
+
+            if(index - 1 >= 0 && index - 1 < _levelsProgress.DatasList.Count)
+            {
+                LevelProgressData levelProgressData = _levelsProgress.DatasList[index - 1];
+                return levelProgressData;
+            }
+
+            return null;
         }
 
         public void ClearData()

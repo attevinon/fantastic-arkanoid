@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using FantasticArkanoid.Level.ModelAbstractions;
 
 namespace FantasticArkanoid.UI
 {
@@ -7,16 +8,14 @@ namespace FantasticArkanoid.UI
     {
         [SerializeField] private Text _scorePointsText;
         [SerializeField] private PauseWindow _pauseWindow;
-        private LevelStateMachine _levelStateMachine;
 
-        public void Initialize(LevelStateMachine levelStateMachine)
+        public void Initialize(LevelStateMachine levelStateMachine,
+            IReadonlyGameSessionData gameSessionData, IReadonlyBestResults bestResults)
         {
-            _levelStateMachine = levelStateMachine;
-            _pauseWindow.Initialize(levelStateMachine);
+            _pauseWindow.Initialize(levelStateMachine, gameSessionData, bestResults);
         }
         public void PauseGame()
         {
-            _levelStateMachine.EnterIn<PauseLevelState>();
             _pauseWindow.ShowWindow(true);
         }
 
