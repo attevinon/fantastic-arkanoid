@@ -24,7 +24,6 @@ namespace FantasticArkanoid.Level
 
         public void OnGameEnded()
         {
-            Debug.Log("OnGameEnded()");
             if (_levelStateMachine.IsCurrentState<GameplayLevelState>())
             {
                 BestResultsData tempBestResults = new BestResultsData();

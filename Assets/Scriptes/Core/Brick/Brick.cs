@@ -1,8 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using FantasticArkanoid.Scriptable;
-using System;
 
 namespace FantasticArkanoid
 {
@@ -16,9 +16,9 @@ namespace FantasticArkanoid
         private int _lives;
         private int _starterScorePoints;
         private int _scorePointsLeft;
-        private event Action<int> _giveScorePoints;
+        private event Action<int> _onScorePointsKnockedOut;
 
-        public void Initialize(BreakableBrickData data, Action<int> updateScore)
+        public void Initialize(BreakableBrickData data, Action<int> onScorePointsKnockedOut)
         {
             base.Initialize(data);
 
@@ -29,7 +29,7 @@ namespace FantasticArkanoid
             _spriteRenerer.sprite = _sprites[_lives - 1];
 
             _scorePointsLeft = _starterScorePoints = data.ScorePoints;
-            _giveScorePoints = updateScore;
+            _onScorePointsKnockedOut += onScorePointsKnockedOut;
         }
 
         public void OnDamage()
@@ -38,12 +38,12 @@ namespace FantasticArkanoid
             if (_lives <= 0)
             {
                 _onDied?.Invoke();
-                _giveScorePoints?.Invoke(_starterScorePoints);
+                _onScorePointsKnockedOut?.Invoke(_starterScorePoints);
             }
             else
             {
                 _spriteRenerer.sprite = _sprites[_lives - 1];
-                _giveScorePoints?.Invoke(CalculateScorePointsToAdd());
+                _onScorePointsKnockedOut?.Invoke(CalculateScorePointsToAdd());
             }
         }
 

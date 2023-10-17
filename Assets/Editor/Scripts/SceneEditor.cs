@@ -65,7 +65,6 @@ namespace FantasticArkanoid
                 return false;
             }
 
-            Debug.Log(_getSelectedBrick == null);
             var data = _getSelectedBrick?.Invoke();
             GameObject go = PrefabUtility.InstantiatePrefab(data.Prefab, _bricksParent) as GameObject;
             go.transform.position = brickPosition;
