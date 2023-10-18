@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 using FantasticArkanoid.Level.ModelAbstractions;
 
 namespace FantasticArkanoid.Level.Model
@@ -17,11 +16,17 @@ namespace FantasticArkanoid.Level.Model
     public class BestResultsData : IReadonlyBestResults
     {
         public int BestScore {get; set; }
+        public float BestTime {get; set; }
 
         public BestResultsData Clone()
         {
-            var jsonClone = JsonUtility.ToJson(this);
-            return JsonUtility.FromJson<BestResultsData>(jsonClone);
+            var newBestResultsData = new BestResultsData()
+            {
+                BestScore = this.BestScore,
+                BestTime = this.BestTime
+            };
+
+            return newBestResultsData;
         }
     }
 }

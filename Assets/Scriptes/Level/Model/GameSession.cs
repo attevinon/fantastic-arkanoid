@@ -8,12 +8,17 @@ namespace FantasticArkanoid.Level.Model
 
         public GameSession()
         {
-            Data = new GameSessionData() { Score = 0 };
+            Data = new GameSessionData()
+            {
+                Score = 0,
+                Time = 0f
+            };
         }
     }
 
     public class GameSessionData : IReadonlyGameSessionData
     {
-        public int Score {get; set;}
+        public int Score { get; set; }
+        public float Time { get; set; }
     }
 }

@@ -6,5 +6,7 @@ namespace FantasticArkanoid.Level.Model
     {
         public int Score { get; set; }
         public bool IsNewBestScore { get; set; }
+        public float Time { get; set; }
+        public bool IsNewBestTime { get; set; }
     }
 }

@@ -4,5 +4,7 @@
     {
         public int Score { get; }
         public bool IsNewBestScore { get; }
+        public float Time { get; }
+        public bool IsNewBestTime { get; }
     }
 }

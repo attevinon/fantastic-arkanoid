@@ -35,10 +35,13 @@ namespace FantasticArkanoid.Level
 
                 GameResult gameResult = new GameResult() {
                     Score = _gameSession.Score,
-                    IsNewBestScore = tempBestResults.BestScore < _gameSession.Score
+                    IsNewBestScore = tempBestResults.BestScore < _gameSession.Score,
+                    Time = _gameSession.Time,
+                    IsNewBestTime = tempBestResults.BestTime > _gameSession.Time || tempBestResults.BestTime == 0
                 };
 
                 tempBestResults.BestScore = gameResult.IsNewBestScore ? gameResult.Score : tempBestResults.BestScore;
+                tempBestResults.BestTime = gameResult.IsNewBestTime ? gameResult.Time : tempBestResults.BestTime;
 
                 _bestResults = tempBestResults;
                 _onVictory?.Invoke(gameResult, tempBestResults);

@@ -13,6 +13,7 @@ namespace FantasticArkanoid.Level
         [SerializeField] private PlayerInput  _input;
         [SerializeField] private Transform _bricksParent;
         [SerializeField] private ScoreCounter _scoreComponent;
+        [SerializeField] private TimeCounter _timeCounter;
         [SerializeField] private CommonGameUI _commonGameUI;
         
         private event Action<IReadonlyGameResult, IReadonlyBestResults> _onVictory;
@@ -34,6 +35,7 @@ namespace FantasticArkanoid.Level
             IReadonlyBestResults bestResults = GetBestResults();
             GameSession gameSession = new GameSession();
             
+            _timeCounter.Initialize(gameSession);
             _scoreComponent.Initialize(_levelStateMachine, gameSession);
             _commonGameUI.Initialize(_levelStateMachine, gameSession.Data, bestResults);
             _onVictory += _commonGameUI.ShowWinResult;

@@ -10,6 +10,7 @@ namespace FantasticArkanoid.UI
         [SerializeField] private CanvasGroup _levelInfoContainer;
         [SerializeField] private Text _levelHeader;
         [SerializeField] private Text _bestScoreText;
+        [SerializeField] private Text _bestTimeText;
         [SerializeField] private Button _playButton;
 
         private void Start()
@@ -26,7 +27,10 @@ namespace FantasticArkanoid.UI
             if (levelProgress.IsOpened)
             {
                 bool isBestResultsNull = levelProgress.BestResults != null;
-                _bestScoreText.text = isBestResultsNull ? levelProgress.BestResults.BestScore.ToString() : "-";
+                _bestScoreText.text = isBestResultsNull ?
+                    levelProgress.BestResults.BestScore.ToString() : "-";
+                _bestTimeText.text = isBestResultsNull ?
+                    TimeFormatter.ToMmSs(levelProgress.BestResults.BestTime) : "-";
             }
         }
 
