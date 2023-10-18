@@ -2,7 +2,7 @@ using FantasticArkanoid.Utilites;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FantasticArkanoid
+namespace FantasticArkanoid.UI
 {
     [RequireComponent(typeof(Text))]
     public class TimeView : MonoBehaviour

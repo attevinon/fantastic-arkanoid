@@ -5,7 +5,7 @@ namespace FantasticArkanoid.UI
 {
     public class CommonGameUI : MonoBehaviour
     {
-        [SerializeField] private GameplayUI _gameplayUI;
+        [SerializeField] private HUD _gameplayUI;
         [SerializeField] private VictoryWindow _victoryWindow;
         //[SerializeField] private GameObject _warningWindow;
 

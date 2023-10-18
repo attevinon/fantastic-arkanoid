@@ -12,7 +12,7 @@ namespace FantasticArkanoid.Level
         [SerializeField] private LevelCleaner _levelCleaner;
         [SerializeField] private PlayerInput  _input;
         [SerializeField] private Transform _bricksParent;
-        [SerializeField] private ScoreCounter _scoreComponent;
+        [SerializeField] private ScoreCounter _scoreCounter;
         [SerializeField] private TimeCounter _timeCounter;
         [SerializeField] private CommonGameUI _commonGameUI;
         
@@ -36,7 +36,7 @@ namespace FantasticArkanoid.Level
             GameSession gameSession = new GameSession();
             
             _timeCounter.Initialize(gameSession);
-            _scoreComponent.Initialize(_levelStateMachine, gameSession);
+            _scoreCounter.Initialize(_levelStateMachine, gameSession, bestResults != null ? bestResults.BestScore : 0);
             _commonGameUI.Initialize(_levelStateMachine, gameSession.Data, bestResults);
             _onVictory += _commonGameUI.ShowWinResult;
             _ = new GameResultHandler(_levelStateMachine, gameSession.Data, bestResults, _onVictory);
@@ -80,7 +80,7 @@ namespace FantasticArkanoid.Level
             LevelStaticData levelData = Resources.Load<LevelStaticData>("Levels/Level_" + LevelIndex.SelctedLevelIndex);
 
             _bricksInitializer = new BricksInitializer();
-            _bricksInitializer.InitializeBricks(levelData, _bricksParent, _scoreComponent.UpdateScore);
+            _bricksInitializer.InitializeBricks(levelData, _bricksParent, _scoreCounter.UpdateScore);
 
             _levelStateMachine.EnterIn<GameplayLevelState>();
         }

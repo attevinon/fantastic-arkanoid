@@ -4,9 +4,8 @@ using FantasticArkanoid.Level.ModelAbstractions;
 
 namespace FantasticArkanoid.UI
 {
-    public class GameplayUI : MonoBehaviour
+    public class HUD : MonoBehaviour
     {
-        [SerializeField] private Text _scorePointsText;
         [SerializeField] private PauseWindow _pauseWindow;
 
         public void Initialize(LevelStateMachine levelStateMachine,
@@ -17,11 +16,6 @@ namespace FantasticArkanoid.UI
         public void PauseGame()
         {
             _pauseWindow.ShowWindow(true);
-        }
-
-        public void UpdateScore(int score)
-        {
-            _scorePointsText.text = score.ToString();
         }
     }
 }
