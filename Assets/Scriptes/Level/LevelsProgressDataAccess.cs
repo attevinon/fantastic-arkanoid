@@ -56,7 +56,7 @@ namespace FantasticArkanoid.Level
 
             _levelsProgress.DatasList[levelIndex - 1] = newProgress;
 
-            if(levelIndex - 1 < _levelsProgress.DatasList.Count)
+            if(levelIndex < _levelsProgress.DatasList.Count)
             {
                 _levelsProgress.DatasList[levelIndex].IsOpened = true;
             }
