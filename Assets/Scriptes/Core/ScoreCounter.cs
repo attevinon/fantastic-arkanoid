@@ -36,7 +36,18 @@ namespace FantasticArkanoid
         {
             if (_levelStateMachine.IsCurrentState<GameplayLevelState>())
             {
-                _gameSession.Data.Score += points;
+                int tmpPoints = points;
+                if (points > 0)
+                {
+                    if(MultiplierCounter.SummaryMultiplier <= 0)
+                    {
+                        Debug.LogError("SummaryMultiplier is 0 or less!");
+                    }
+
+                    tmpPoints *= MultiplierCounter.SummaryMultiplier;
+                }
+
+                _gameSession.Data.Score += tmpPoints;
                 _scoreUpdated?.Invoke(_gameSession.Data.Score, _gameSession.Data.Score > _bestScore);
             }
         }

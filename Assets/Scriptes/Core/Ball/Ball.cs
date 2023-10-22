@@ -14,6 +14,8 @@ namespace FantasticArkanoid
 
         [SerializeField] private UnityEvent _onActivate;     
         [SerializeField] private UnityEvent _onDiactivate;
+        [SerializeField] private UnityEvent _onBrickCollision;
+        [SerializeField] private UnityEvent _onPaddleCollision;
 
         [SerializeField] public UnityEvent OnOutOfLevel;
 
@@ -45,12 +47,16 @@ namespace FantasticArkanoid
             }
         }
 
-        // SetBallUnactive()
-
-        //вынести в отедельный компонент?
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            if (collision.gameObject.TryGetComponent(out Brick brick))
+            {
+                _onBrickCollision?.Invoke();
+                brick.OnDamage();
+            }
+
             if (!collision.gameObject.CompareTag(ConstStrings.Tags.PADDLE_TAG)) return;
+            _onPaddleCollision?.Invoke();
 
             float x = HitFactor(this.transform.position,
                 collision.transform.position,
