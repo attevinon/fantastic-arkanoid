@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using FantasticArkanoid.Utilites;
 using FantasticArkanoid.Level.ModelAbstractions;
+using FantasticArkanoid.Level.Model;
 
 namespace FantasticArkanoid.UI
 {
@@ -11,6 +12,7 @@ namespace FantasticArkanoid.UI
         [SerializeField] private Text _levelHeader;
         [SerializeField] private Text _bestScoreText;
         [SerializeField] private Text _bestTimeText;
+        [SerializeField] private Text _bestComboText;
         [SerializeField] private Button _playButton;
 
         private void Start()
@@ -26,11 +28,20 @@ namespace FantasticArkanoid.UI
 
             if (levelProgress.IsOpened)
             {
-                bool isBestResultsNull = levelProgress.BestResults != null;
-                _bestScoreText.text = isBestResultsNull ?
-                    levelProgress.BestResults.BestScore.ToString() : "-";
-                _bestTimeText.text = isBestResultsNull ?
-                    TimeFormatter.ToMmSs(levelProgress.BestResults.BestTime) : "-";
+                if (levelProgress.BestResults != null)
+                {
+                    _bestScoreText.text = levelProgress.BestResults.BestScore.ToString();
+                    _bestTimeText.text = TimeFormatter.ToMmSs(levelProgress.BestResults.BestTime);
+                    _bestComboText.text = levelProgress.BestResults.BestCombo > 1 ?
+                        levelProgress.BestResults.BestCombo.ToString() : "-";
+                }
+                else
+                {
+                    _bestScoreText.text = "-";
+                    _bestTimeText.text = "-";
+                    _bestComboText.text = "-";
+                }
+
             }
         }
 
