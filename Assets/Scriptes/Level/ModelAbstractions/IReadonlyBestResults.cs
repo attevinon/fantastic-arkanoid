@@ -4,5 +4,6 @@
     {
         public int BestScore { get; }
         public float BestTime { get; }
+        public int BestCombo { get; }
     }
 }

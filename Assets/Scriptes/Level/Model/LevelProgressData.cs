@@ -17,13 +17,15 @@ namespace FantasticArkanoid.Level.Model
     {
         public int BestScore {get; set; }
         public float BestTime {get; set; }
+        public int BestCombo {get; set; }
 
         public BestResultsData Clone()
         {
             var newBestResultsData = new BestResultsData()
             {
                 BestScore = this.BestScore,
-                BestTime = this.BestTime
+                BestTime = this.BestTime,
+                BestCombo = this.BestCombo
             };
 
             return newBestResultsData;

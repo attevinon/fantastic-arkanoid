@@ -37,14 +37,17 @@ namespace FantasticArkanoid.Level
                     Score = _gameSession.Score,
                     IsNewBestScore = tempBestResults.BestScore < _gameSession.Score,
                     Time = _gameSession.Time,
-                    IsNewBestTime = tempBestResults.BestTime > _gameSession.Time || tempBestResults.BestTime == 0
+                    IsNewBestTime = tempBestResults.BestTime > _gameSession.Time || tempBestResults.BestTime == 0,
+                    BiggestCombo = MultiplierCounter.BestResult,
+                    IsNewBestCombo = tempBestResults.BestCombo < MultiplierCounter.BestResult
                 };
 
                 tempBestResults.BestScore = gameResult.IsNewBestScore ? gameResult.Score : tempBestResults.BestScore;
                 tempBestResults.BestTime = gameResult.IsNewBestTime ? gameResult.Time : tempBestResults.BestTime;
+                tempBestResults.BestCombo = gameResult.IsNewBestCombo ? gameResult.BiggestCombo : tempBestResults.BestCombo;
 
                 _bestResults = tempBestResults;
-                _onVictory?.Invoke(gameResult, tempBestResults);
+                _onVictory?.Invoke(gameResult, _bestResults);
                 BricksCounter.OnBricksDisabled -= OnGameEnded;
 
                 LevelProgressData levelProgressData = new LevelProgressData()
