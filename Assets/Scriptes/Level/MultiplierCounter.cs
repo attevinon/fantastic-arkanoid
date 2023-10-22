@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace FantasticArkanoid
@@ -7,6 +8,7 @@ namespace FantasticArkanoid
         private int _multiplier;
         public static int BestResult { get; private set; }
         public static int SummaryMultiplier { get; private set; }
+        public static event Action<int> MultiplierUpdated;
 
         private void OnDisable()
         {
@@ -21,6 +23,8 @@ namespace FantasticArkanoid
             {
                 BestResult = SummaryMultiplier;
             }
+
+            MultiplierUpdated?.Invoke(SummaryMultiplier);
         }
         public void ResetMultiplier()
         {
@@ -30,6 +34,8 @@ namespace FantasticArkanoid
                 Debug.LogError("Summary Multiplier is less than 0!");
             }
             _multiplier = 0;
+
+            MultiplierUpdated?.Invoke(SummaryMultiplier);
         }
     }
 }
