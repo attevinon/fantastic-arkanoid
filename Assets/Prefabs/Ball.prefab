@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9142152316880023121}
   - component: {fileID: 5802635915180972656}
   - component: {fileID: 1520635152618578900}
+  - component: {fileID: 3580845544144416082}
   - component: {fileID: 1267247793019399951}
   - component: {fileID: 3608187643704303070}
   - component: {fileID: 5890347428901182853}
@@ -28,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1284227744918729214}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -3.92, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5802635915180972656
 SpriteRenderer:
@@ -107,9 +108,51 @@ MonoBehaviour:
   _onDiactivate:
     m_PersistentCalls:
       m_Calls: []
+  _onBrickCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3580845544144416082}
+        m_TargetAssemblyTypeName: FantasticArkanoid.MultiplierCounter, Assembly-CSharp
+        m_MethodName: InscreaceMultiplier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPaddleCollision:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3580845544144416082}
+        m_TargetAssemblyTypeName: FantasticArkanoid.MultiplierCounter, Assembly-CSharp
+        m_MethodName: ResetMultiplier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnOutOfLevel:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 3580845544144416082}
+        m_TargetAssemblyTypeName: FantasticArkanoid.MultiplierCounter, Assembly-CSharp
+        m_MethodName: ResetMultiplier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1267247793019399951}
         m_TargetAssemblyTypeName: FantasticArkanoid.DestroyObjectComponent, Assembly-CSharp
         m_MethodName: DestroyObject
@@ -122,6 +165,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3580845544144416082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284227744918729214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f5ae66f0e06774db3cee81f311e055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1267247793019399951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,25 +200,6 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: ffd27407c35622e488bec6b1e9eb1584, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -187,12 +223,6 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: ffd27407c35622e488bec6b1e9eb1584, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
   m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1

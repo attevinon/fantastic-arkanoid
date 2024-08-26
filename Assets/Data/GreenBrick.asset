@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GreenBrick
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7327951949114229832, guid: 26b07ce06582b2d41a01ec61c80938d6, type: 3}
+  ParticlesColor: {r: 0.040301967, g: 0.8396226, b: 0, a: 1}
   Sprites:
   - {fileID: 1334164753, guid: 7a445b37e0c258c48a6fe5d196e03740, type: 3}
-  ParticlesColor: {r: 0.040301967, g: 0.8396226, b: 0, a: 1}
-  ScorePoints: 0
+  ScorePoints: 100

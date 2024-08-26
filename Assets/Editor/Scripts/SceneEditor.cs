@@ -1,23 +1,26 @@
-using FantasticArkanoid.Scriptable;
+using System;
 using UnityEditor;
 using UnityEngine;
+using FantasticArkanoid.Scriptable;
+using Unity.VisualScripting;
 
 namespace FantasticArkanoid
 {
     public class SceneEditor : EditorWindow
     {
         private readonly EditorLevelGrid _grid = new EditorLevelGrid();
-        private LevelEditor _levelEditor;
-        private Transform _parent;
 
-        public void Initialize(LevelEditor levelEditor, Transform parent)
+        private Transform _bricksParent;
+        private Func<BrickData> _getSelectedBrick;
+
+        public void Initialize(Transform parent, Func<BrickData> getSelectedBrick)
         {
-            _parent = parent;
-            _levelEditor = levelEditor;
+            _bricksParent = parent;
+            _getSelectedBrick = getSelectedBrick;
         }
 
         public void OnSceneGUI(SceneView sceneView)
-        {
+        {   
             _grid.DrawGrid();
 
             Event current = Event.current;
@@ -32,8 +35,8 @@ namespace FantasticArkanoid
                 return;
             }
 
-                Vector3 point = sceneView.camera.ScreenToWorldPoint(new Vector3(
-                current.mousePosition.x, 
+            Vector3 point = sceneView.camera.ScreenToWorldPoint(new Vector3(
+                current.mousePosition.x,
                 sceneView.camera.pixelHeight - current.mousePosition.y,
                 sceneView.camera.nearClipPlane));
 
@@ -44,34 +47,74 @@ namespace FantasticArkanoid
                 return;
             }
 
+            if (current.alt)
+            {
+                DeleteBrick(brickPosition);
+            }
+            else
+            {
+                AddBrick(brickPosition);
+            }
+        }
+
+        private bool AddBrick(Vector3 brickPosition)
+        {
             if (!IsEmpty(brickPosition))
             {
                 Debug.LogWarning("Cell is occuped!");
-                return;
+                return false;
             }
 
-            GameObject go = PrefabUtility.InstantiatePrefab(_levelEditor.GetSelectedBrick().Prefab, _parent) as GameObject;
+            var data = _getSelectedBrick?.Invoke();
+            GameObject go = PrefabUtility.InstantiatePrefab(data.Prefab, _bricksParent) as GameObject;
             go.transform.position = brickPosition;
 
-            if(go.TryGetComponent(out BaseBrick baseBrick))
+            if (go.TryGetComponent(out BaseBrick baseBrick))
             {
-                baseBrick.Data = _levelEditor.GetSelectedBrick();
+                baseBrick.Data = _getSelectedBrick?.Invoke();
 
                 if (go.TryGetComponent(out Brick brick))
                 {
-                    brick.Initialize(_levelEditor.GetSelectedBrick() as BreakableBrickData);
+                    brick.Initialize(_getSelectedBrick?.Invoke() as BreakableBrickData, null);
                 }
                 else
                 {
-                    baseBrick.Initialize(_levelEditor.GetSelectedBrick());
+                    baseBrick.Initialize(_getSelectedBrick?.Invoke());
                 }
+
+                return true;
             }
+
+            return false;
+        }
+
+        private bool DeleteBrick(Vector3 brickPosition)
+        {
+            if (IsEmpty(brickPosition))
+            {
+                Debug.LogWarning("Cell is empty!");
+                return false;
+            }
+
+            GameObject collision = FindCollision2D(brickPosition).gameObject;
+            if (collision.TryGetComponent(out BaseBrick brickToDelete))
+            {
+                DestroyImmediate(brickToDelete.gameObject);
+                return true;
+            }
+
+            return false;
+
+        }
+
+        private Collider2D FindCollision2D(Vector3 position)
+        {
+            return Physics2D.OverlapCircle(position, 0.1f);
         }
 
         private bool IsEmpty(Vector3 position)
         {
-            Collider2D collision = Physics2D.OverlapCircle(position, 0.1f);
-            return collision == null;
+            return FindCollision2D(position) == null;
         }
     }
 }

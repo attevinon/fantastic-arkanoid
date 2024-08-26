@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using FantasticArkanoid.Utilites;
+using FantasticArkanoid.Level.ModelAbstractions;
+using FantasticArkanoid.Level.Model;
 
 namespace FantasticArkanoid.UI
 {
@@ -8,6 +10,9 @@ namespace FantasticArkanoid.UI
     {
         [SerializeField] private CanvasGroup _levelInfoContainer;
         [SerializeField] private Text _levelHeader;
+        [SerializeField] private Text _bestScoreText;
+        [SerializeField] private Text _bestTimeText;
+        [SerializeField] private Text _bestComboText;
         [SerializeField] private Button _playButton;
 
         private void Start()
@@ -15,12 +20,29 @@ namespace FantasticArkanoid.UI
             _levelInfoContainer.EnableCanvasGroup(false);
         }
 
-        public void ShowSelectedLevelInfo(bool isLevelOpened)
+        public void ShowSelectedLevelInfo(IReadonlyLevelProgress levelProgress)
         {
             _levelInfoContainer.EnableCanvasGroup(true);
-
             _levelHeader.text = $"Level {LevelIndex.SelctedLevelIndex}";
-            _playButton.interactable = isLevelOpened;
+            _playButton.interactable = levelProgress.IsOpened;
+
+            if (levelProgress.IsOpened)
+            {
+                if (levelProgress.BestResults != null)
+                {
+                    _bestScoreText.text = levelProgress.BestResults.BestScore.ToString();
+                    _bestTimeText.text = TimeFormatter.ToMmSs(levelProgress.BestResults.BestTime);
+                    _bestComboText.text = levelProgress.BestResults.BestCombo > 1 ?
+                        levelProgress.BestResults.BestCombo.ToString() : "-";
+                }
+                else
+                {
+                    _bestScoreText.text = "-";
+                    _bestTimeText.text = "-";
+                    _bestComboText.text = "-";
+                }
+
+            }
         }
 
         public void OnPlayClicked()
