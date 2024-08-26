@@ -22,10 +22,18 @@ namespace FantasticArkanoid
         {
             if(_states.TryGetValue(typeof(TState), out BaseLevelState newState))
             {
+                if (IsCurrentState<TState>())
+                    return;
+
                 _currentState?.ExitState();
                 _currentState = newState;
                 newState.EnterState();
             }
+        }
+
+        public bool IsCurrentState<TState>() where TState : BaseLevelState
+        {
+            return typeof(TState) == _currentState?.GetType();
         }
     }
 }

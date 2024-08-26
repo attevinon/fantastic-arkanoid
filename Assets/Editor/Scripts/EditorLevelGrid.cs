@@ -6,7 +6,7 @@ namespace FantasticArkanoid
     public class EditorLevelGrid
     {
         private const float LEFT_POSITION = -7.5f;
-        private const float UP_POSITION = 4.25f;
+        private const float UP_POSITION = 4f;
 
         private const int COLUMNS_COUNT = 16;
         private const int ROWS_COUNT = 11;

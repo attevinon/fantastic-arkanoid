@@ -1,21 +1,23 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using FantasticArkanoid.Level.ModelAbstractions;
 
 namespace FantasticArkanoid.UI
 {
     public class LevelButton : MonoBehaviour
     {
         [SerializeField] private Text _buttonText;
-        private Action<bool> _onClicked;
+        private Action<IReadonlyLevelProgress> _onClicked;
         private int _levelIndex;
-        private bool _isOpened;
+        private IReadonlyLevelProgress _levelProgress;
 
-        public void Initialize(int levelIndex, LevelProgressData levelProgress, Action<bool> onClicked)
+        public void Initialize(int levelIndex, IReadonlyLevelProgress levelProgress,
+            Action<IReadonlyLevelProgress> onClicked)
         {
             _levelIndex = levelIndex;
             _buttonText.text = _levelIndex.ToString();
-            _isOpened = levelProgress.IsOpened;
+            _levelProgress = levelProgress;
 
             _onClicked += onClicked;
         }
@@ -23,7 +25,7 @@ namespace FantasticArkanoid.UI
         public void OnLevelButtonClicked()
         {
             LevelIndex.SelctedLevelIndex = _levelIndex;
-            _onClicked?.Invoke(_isOpened);
+            _onClicked?.Invoke(_levelProgress);
         }
     }
 }

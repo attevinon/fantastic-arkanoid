@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8101177626536613856}
   - component: {fileID: 4504190321583386633}
   - component: {fileID: 3431735073437567833}
-  - component: {fileID: 5880397419790784206}
   - component: {fileID: 4012318129932827368}
   - component: {fileID: 7063588250325492798}
   - component: {fileID: 3807867903862013756}
@@ -104,7 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data: {fileID: 0}
   _sprites: []
-  _lives: 0
   _spriteRenerer: {fileID: 0}
   _onDied:
     m_PersistentCalls:
@@ -157,34 +155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c038c9449f5b8974cbe034a16c2f8084, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5880397419790784206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7327951949114229832}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5fda9bfb4e0ab14f8f2e863b29a2eb9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _tag: Ball
-  _action:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4504190321583386633}
-        m_TargetAssemblyTypeName: FantasticArkanoid.Brick, Assembly-CSharp
-        m_MethodName: OnDamage
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!198 &4012318129932827368
 ParticleSystem:
   m_ObjectHideFlags: 0

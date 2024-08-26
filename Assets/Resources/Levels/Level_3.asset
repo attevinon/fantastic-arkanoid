@@ -13,29 +13,23 @@ MonoBehaviour:
   m_Name: Level_3
   m_EditorClassIdentifier: 
   Bricks:
-  - Position: {x: -1.5, y: 0.25, z: 0}
+  - Position: {x: -1.5, y: 0.5, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: -0.5, y: -0.25, z: 0}
+  - Position: {x: -0.5, y: 0, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 0.5, y: -0.25, z: 0}
+  - Position: {x: 0.5, y: 0.5, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 1.5, y: 0.25, z: 0}
+  - Position: {x: 0.5, y: 1, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 1.5, y: 0.75, z: 0}
+  - Position: {x: -0.5, y: 1.5, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 1.5, y: 1.25, z: 0}
+  - Position: {x: 0.5, y: 1.5, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 0.5, y: 1.75, z: 0}
+  - Position: {x: 0.5, y: 2, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: -1.5, y: 3.25, z: 0}
+  - Position: {x: 0.5, y: 2.5, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 1.5, y: 2.25, z: 0}
+  - Position: {x: -0.5, y: 3, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 1.5, y: 2.75, z: 0}
-    Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 1.5, y: 3.25, z: 0}
-    Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: 0.5, y: 3.75, z: 0}
-    Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}
-  - Position: {x: -0.5, y: 3.75, z: 0}
+  - Position: {x: -1.5, y: 2.5, z: 0}
     Data: {fileID: 11400000, guid: 4c1f67d6ea5b9bd4784bbc7e65b4c01f, type: 2}

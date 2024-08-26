@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace FantasticArkanoid
@@ -7,6 +6,7 @@ namespace FantasticArkanoid
     public class BricksCounter : MonoBehaviour
     {
         private static int _bricksCount;
+        public static event Action OnBricksDisabled;
 
         private void OnEnable()
         {
@@ -19,7 +19,7 @@ namespace FantasticArkanoid
 
             if (_bricksCount <= 0)
             {
-                Debug.Log("Victory!");
+                OnBricksDisabled?.Invoke();
             }
         }
     }
