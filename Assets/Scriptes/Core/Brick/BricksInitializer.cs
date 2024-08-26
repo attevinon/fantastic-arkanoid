@@ -7,15 +7,15 @@ using UnityEditor;
 
 namespace FantasticArkanoid
 {
-    public class BricksInitializer
+    public class BricksInitializer : MonoBehaviour
     {
         public void InitializeBricks(LevelStaticData levelData, Transform parent, Action<int> onScorePointsKnockedOut)
         {
             for (int i = 0; i < levelData.Bricks.Count; i++)
             {
                 GameObject go;
-#if UNITY_EDITOR
 
+#if UNITY_EDITOR
                 go = PrefabUtility.InstantiatePrefab(levelData.Bricks[i].Data.Prefab, parent) as GameObject;
 
                 if(go.TryGetComponent(out BaseBrick baseBrick))
@@ -23,15 +23,18 @@ namespace FantasticArkanoid
                     baseBrick.Data = levelData.Bricks[i].Data;
                 }
 #else
-                GameObject go = Instantiate(levelData.Bricks[i].Data.Prefab, parent);
+                go = Instantiate(levelData.Bricks[i].Data.Prefab, parent);
 #endif
+
                 if (go.TryGetComponent(out Brick brick))
                 {
                     brick.Initialize(levelData.Bricks[i].Data as BreakableBrickData, onScorePointsKnockedOut);
                 }
                 else
                 {
+#if UNITY_EDITOR
                     baseBrick.Initialize(levelData.Bricks[i].Data);
+#endif
                 }
 
                 go.transform.position = levelData.Bricks[i].Position;
